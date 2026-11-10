@@ -19,7 +19,8 @@
   <!--header inicio-->
   <div class="header">
     <div class="container">
-      <h1 class="titulo">AquaTech</h1>
+        <img class="logo" src="assets/imgss//Logo.png" alt="">
+        <img class="jakeHeader" src="assets/imgss/Jake Header.png" alt="">
       <ul class="navbar">
         <li>
           <a href="index.html">Inicial</a>
@@ -54,10 +55,6 @@
                          Assim que inserir vá para o script abaixo.
                      -->
           <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
@@ -73,7 +70,7 @@
             <span>Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+          <button class="botao-cadastro" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif" />
@@ -83,14 +80,6 @@
       </div>
     </div>
   </div>
-
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
-    </div>
-  </div>
-  <!--footer fim-->
 </body>
 
 </html>
@@ -109,7 +98,6 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
     var idEmpresaVincular
 
     // Verificando se há algum campo em branco
@@ -117,8 +105,7 @@
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      confirmacaoSenhaVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =

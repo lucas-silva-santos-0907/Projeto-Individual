@@ -1,18 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://static.wfonts.com/data/2016/07/02/thunderman/Thunderman.ttf');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */ 
+  font-family: 'Thunderman';
   background-color: black;
 }
 
 :root {
-  --tamanho-header: 80px;
-  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-header: 70px;
+  --tamanho-banner: calc(109vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-campo: calc(119vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(109vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
+
+  --cor-jake: #FEB800;   
+  --cor-finn: #009BD1;
+  --cor-marceline: #A3BACA;
 }
 
 .container {
@@ -22,19 +30,31 @@ body {
 }
 
 .header {
-  height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+    height: var(--tamanho-header);
+    border-bottom: 2px solid var(--cor-finn);
+    background-color: var(--cor-jake);
 }
 
 .header .container {
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 90%;
+}
+
+.logo {
+  width: 150px;
+}
+
+.jakeHeader {
+  width: 90px;
+  position: relative;
+  left: 100px;
 }
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: black;
 }
 
 .agora {
@@ -47,7 +67,6 @@ body {
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
 }
 
 .titulo {
@@ -65,25 +84,56 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/imgss/banner\ Home.jpg');
   background-size: cover;
 }
 
 .banner .container {
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
 }
 
 .banner .container p {
-  width: 50%;
+  width: 100%;
   margin: 0;
   padding: 0;
-  font-size: 36px;
+  font-size: 28px;
+  color: #CDE0F1;
 }
 
 .banner .container span {
-  font-weight: 800;
+  display: flex;
+  width: 400px;
+  font-size: 18px;
+  color: #9DBDE4;
+}
+
+
+
+.botaoExplorar {
+    padding: 10px 10px 10px 10px;
+    border: solid #CDE0F1 3px;
+    background-color: var(--cor-jake);
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    font-family: 'Thunderman';
+    position: relative;
+    top: 100px;
+    text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.botaoExplorar:hover {
+    transform: scale(1.05);
 }
 
 /* MISSÃO VISÃO VALORES */
@@ -91,6 +141,7 @@ body {
 .social {
   background-color: #e5e5e5;
   display: flex;
+  height: var(--tamanho-campo);
 }
 
 .social .container {
@@ -98,7 +149,9 @@ body {
 }
 
 .box img {
-  width: 170px;
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
 }
 
 .social .container .boxes {
@@ -121,10 +174,11 @@ body {
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
-  height: 150px;
-  color: #fff;
+  background-color: var(--cor-jake);
+  height: 100px;
+  color: black;
   display: flex;
+  flex-direction: column;
   font-size: 15px;
 }
 
@@ -141,8 +195,9 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/imgss/Banner\ Cadastro.png');
   background-size: cover;
+  background-position: center 65%;
 }
 
 .login .container {
@@ -153,7 +208,6 @@ body {
 
 .card {
   width: 50%;
-  background-color: #e5e5e5;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -162,6 +216,12 @@ body {
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
+  color: #71B889;
+  font-family: 'Pixelify Sans', sans-serif;
+  position: relative;
+  top: -50px;
+  left: -230px;
+  transform: rotate(356deg);
 }
 
 .card h2 {
@@ -183,10 +243,14 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+  border: 2px solid #9CDBB1;
   text-align: center;
   border-radius: 10px;
   margin: 0;
+  font-family: 'Pixelify Sans', sans-serif;
+  background-color: #9CDBB1;
+  padding: 8px 45px 8px 45px;
+  font-size: 15px;
 }
 
 .formulario select {
@@ -200,25 +264,62 @@ body {
 }
 
 .campo {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    align-items: center;
 }
 
-.botao {
-  cursor: pointer;
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  color: #fff;
-  background-color: #ED145B;
-  width: 120px;
-  height: 30px;
-  align-self: center;
-  margin-top: 20px;
+.botao-cadastro {
+    padding: 35px 0px 35px 0px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+    border: 2px solid #120204;
+    border-radius: 200px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    background-color: #F22226;
+    width: 90px;
+    align-self: center;
+    position: relative;
+    top: 125px;
+    left: 90px;
+    box-shadow: -4px 2px 0px #BC191C, 
+    -6px 2px 0px 0px #000000;
+    transition: all 0.1s ease;
+}
+
+.botao-cadastro:active {
+  transform: translate(-4px);
+  box-shadow: 0px 0px 0px #BC191C, 
+  0px 0px 0px 0px #000000;
+}
+
+.botao-login {
+    padding: 35px 0px 35px 0px;
+    cursor: pointer;
+    font-family: 'Pixelify Sans', sans-serif;
+    border: 2px solid #120204;
+    border-radius: 200px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    background-color: #F22226;
+    width: 90px;
+    align-self: center;
+    position: relative;
+    top: 190px;
+    left: 90px;
+    box-shadow: -4px 2px 0px #BC191C, 
+    -6px 2px 0px 0px #000000;
+    transition: all 0.1s ease;
+}
+
+.botao-login:active {
+  transform: translate(-4px);
+  box-shadow: 0px 0px 0px #BC191C, 
+  0px 0px 0px 0px #000000;
 }
 
 .loading-div {
