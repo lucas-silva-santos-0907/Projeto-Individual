@@ -1,11 +1,18 @@
 /* pagina mural */
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --cor-jake: #FEB800;   
+  --cor-finn: #009BD1;
+  --cor-marceline: #A3BACA;
 }
 
 .label-captura {
@@ -116,13 +123,12 @@ body {
 }
 
 .dash {
-  width: 80%;
-  position: relative;
-  top: 0;
-  left: 20%;
-  background-color: #161618;
-  height: 100vh;
-  overflow: auto;
+    width: 98%;
+    background-color: #BDF7D1;
+    height: 75vh;
+    overflow: auto;
+    border: 3px solid #000000;
+    border-radius: 10px;
 }
 
 .area-parametros-alerta {
@@ -327,8 +333,12 @@ canvas {
 /* PAGINA DOS GRÁFICOS 2023-2026 */
 
 .janela {
-  display: flex;
-  /* width: 100vw; */
+    display: flex;
+    /* width: 100vw; */
+    background-color: #4BC0A2;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-left a {
@@ -383,28 +393,48 @@ canvas {
   font-weight: 800;
 }
 
-.btn-nav {
-  width: 40%;
-  color: white;
-  background-color: #e6005a;
-  border-radius: 5px;
-  text-align: center;
-  padding: 2% 5%;
+.btn-sla {
+    padding: 0px 100px 0px 100px;
+    border: solid #000 3px;
+    background-color: #00C7DE;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-flex;
+    transition: transform 0.3s ease;
+    box-shadow: -3px 3px 0px #0298AA, 
+                -3px 3px 0px 3px #000000;
+    transition: all 0.1s ease;
 }
 
-.btn-nav-white {
-  width: 40%;
-  background-color: white;
-  border: 3px solid #e6005a;
-  border-radius: 5px;
-  text-align: center;
-  padding: 2% 5%;
+.btn-sla:active {
+    transform: translate(-4px);
+
+    box-shadow: 0px 0px 0px #0298AA, 
+    0px 0px 0px 0px #000000;
 }
 
-.btn-nav-white h3 {
-  color: #e6005a;
-  padding: 0;
-  margin: 0;
+
+.btn-sla-pers {
+      padding: 0px 50px 0px 50px;
+    border: solid #000 3px;
+    background-color: #00C7DE;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-flex;
+        box-shadow: -3px 3px 0px #0298AA, 
+                -3px 3px 0px 3px #000000;
+    transition: transform 0.1s ease;
+}
+
+.btn-sla-pers:active {
+    transform: translate(-4px);
+
+    box-shadow: 0px 0px 0px #0298AA, 
+    0px 0px 0px 0px #000000;
 }
 
 .btn-nav h3,
@@ -414,14 +444,48 @@ canvas {
 }
 
 .btn-logout {
-  margin: 0;
-  padding: 0;
-  width: 20%;
-  background-color: #32b9cd;
-  color: white;
-  border-radius: 10px;
-  text-align: center;
-  padding: 10px 15px;
-  margin-bottom: 100px;
-  cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 7%;
+    background-color: #F22226;
+    border: 2px solid #000000;
+    color: white;
+    border-radius: 200px;
+    text-align: center;
+    padding: 45px 5px 45px 5px;
+    cursor: pointer;
+    box-shadow: -4px 2px 0px #BC191C, 
+                -6px 2px 0px 0px #000000;
+    transition: all 0.1s ease;
 }
+
+.btn-logout:active {
+    transform: translate(-4px);
+
+    box-shadow: 0px 0px 0px #BC191C, 
+    0px 0px 0px 0px #000000;
+}
+
+
+.footer-dash {
+    background-color: #4BC0A2;
+    height: 143px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    border-top: 3px solid #000000;
+}
+
+.footer-dash .container {
+    display: flex;
+    width: 95%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+
