@@ -84,7 +84,7 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgss/banner\ Home.jpg');
+  background-image: url('../assets/imgss/Banner\ Home.jpg');
   background-size: cover;
 }
 

@@ -28,7 +28,7 @@
 
         
 <div  class="quiz">
-    <div id="pontuacaoEJogo">
+    <div id="pontuacaoEJogo" class="quiz-box">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
@@ -59,7 +59,7 @@
                 <span><em>Escolha uma opção dentre as abaixo:</em></span>
             </div>
 
-            <div id="opcoes" class="flex-colunar padding-8">
+            <div id="opcoes" class="flex-colunar padding-8 questoes">
                 <span>
                     <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
                     <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
@@ -80,12 +80,16 @@
 
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
 
         </div>
+    </div>
+
+    <div id="resultadoFinal" class="resultado-final flex-colunar padding-16" style="display:none;">
+        <img id="imgPersonagem" src="" alt="Personagem" style="max-width:250px; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.2);" />
+        <h3 id="nomePersonagem" style="margin-top:16px; text-transform:uppercase; letter-spacing:1px;"></h3>
+        <p id="descricaoPersonagem" style="margin-top:12px; text-align:center; max-width:360px; line-height:1.5;"></p>
     </div>
 </div>
 
@@ -137,216 +141,260 @@
 </html>
 <script>
     const listaDeQuestoes = [
-
         {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
+            pergunta: "Quando um amigo precisa desabafar sobre problemas em casa, você:",
+            alternativas: {
+                alternativaA: { texto: "Escuta, oferece companhia e deixa claro que ele não está sozinho", personagem: "Finn" },
+                alternativaB: { texto: "Joga umas frases leves para quebrar a tensão do momento", personagem: "Jake" },
+                alternativaC: { texto: "Organiza um plano simples e mostra o passo a passo para ajudar", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Compartilha experiências e lembra que emoções são válidas", personagem: "Marceline" }
+            }
         },
-
         {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Como você lida com pressão de tarefas acumuladas em um único dia?",
+            alternativas: {
+                alternativaA: { texto: "Faço listas claras, priorizo e cobro resultados com carinho", personagem: "Princesa Jujuba" },
+                alternativaB: { texto: "Ergo o astral do grupo e intercalo tarefas com pausas criativas", personagem: "Jake" },
+                alternativaC: { texto: "Encaro cada desafio com coragem e foco", personagem: "Finn" },
+                alternativaD: { texto: "Transformo tudo em uma brincadeira para manter a motivação", personagem: "BMO" }
+            }
         },
-
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
-        }
-
+            pergunta: "Você encontra uma mensagem ofensiva nas redes; como reage?",
+            alternativas: {
+                alternativaA: { texto: "Respondo com calma e dados para mostrar outra visão", personagem: "Rei Gelado/Simon Petrikov" },
+                alternativaB: { texto: "Mostro apoio à pessoa afetada com palavras sensíveis", personagem: "Finn" },
+                alternativaC: { texto: "Faço arte ou música para expressar o impacto emocional", personagem: "Marceline" },
+                alternativaD: { texto: "Uso humor para dissipar o clima sem ignorar o que aconteceu", personagem: "Jake" }
+            }
+        },
+        {
+            pergunta: "Quando um encontro com amigos vira um caos, você:",
+            alternativas: {
+                alternativaA: { texto: "Crio harmonia organizando um plano simples e acolhedor", personagem: "Princesa Jujuba" },
+                alternativaB: { texto: "Ralho menos e improviso uma atividade divertida", personagem: "Jake" },
+                alternativaC: { texto: "Incentivo a caminhada coletiva para transformar em aventura", personagem: "Finn" },
+                alternativaD: { texto: "Escrevo algo emocional para lembrar do valor da amizade", personagem: "Marceline" }
+            }
+        },
+        {
+            pergunta: "No tempo livre, o que te recarrega?",
+            alternativas: {
+                alternativaA: { texto: "Passar tempo ao ar livre ou praticar esportes", personagem: "Finn" },
+                alternativaB: { texto: "Criar música, escrever ou dar voz ao que sente", personagem: "Marceline" },
+                alternativaC: { texto: "Experimentar ideias novas, resolver bugs ou desafios", personagem: "BMO" },
+                alternativaD: { texto: "Conversar, rir e manter a energia do grupo", personagem: "Jake" }
+            }
+        },
+        {
+            pergunta: "Como ajuda alguém que perdeu a motivação?",
+            alternativas: {
+                alternativaA: { texto: "Escuto, validando o que sente e ofereço suporte constante", personagem: "Finn" },
+                alternativaB: { texto: "Levo leveza e lembro dos momentos divertidos que vivemos", personagem: "Jake" },
+                alternativaC: { texto: "Organizo metas práticas e apoio emocional para seguir em frente", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Crio algo artístico para traduzir o que ele sente", personagem: "Marceline" }
+            }
+        },
+        {
+            pergunta: "O que faz você se sentir útil em um grupo?",
+            alternativas: {
+                alternativaA: { texto: "Apoiar os outros com coragem e cuidado", personagem: "Finn" },
+                alternativaB: { texto: "Planejar soluções e manter o equilíbrio em momentos tensos", personagem: "Princesa Jujuba" },
+                alternativaC: { texto: "Ouvir, expressar sentimentos e acolher o que aflora", personagem: "Marceline" },
+                alternativaD: { texto: "Trazer humor e espontaneidade para aproximar todos", personagem: "Jake" }
+            }
+        },
+        {
+            pergunta: "Ao tomar uma decisão rápida, você prefere:",
+            alternativas: {
+                alternativaA: { texto: "Seguir a intuição e agir com bravura", personagem: "Finn" },
+                alternativaB: { texto: "Buscar evidências e lógica antes de agir", personagem: "Rei Gelado/Simon Petrikov" },
+                alternativaC: { texto: "Conversar com o grupo para alinhar a melhor saída", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Transformar o processo em experimento e aprender com ele", personagem: "BMO" }
+            }
+        },
+        {
+            pergunta: "Qual cenário torna seu dia mais significativo?",
+            alternativas: {
+                alternativaA: { texto: "Fazer algo pelo outro e garantir que ele se sinta seguro", personagem: "Finn" },
+                alternativaB: { texto: "Organizar tudo nos bastidores e trazer paz", personagem: "Princesa Jujuba" },
+                alternativaC: { texto: "Criar arte ou música que emociona quem está por perto", personagem: "Marceline" },
+                alternativaD: { texto: "Inventar novas histórias, jogos e experiências", personagem: "BMO" }
+            }
+        },
+        {
+            pergunta: "Quando a ansiedade aparece à noite, você:",
+            alternativas: {
+                alternativaA: { texto: "Conversa com alguém e busca força na amizade", personagem: "Finn" },
+                alternativaB: { texto: "Organiza os pensamentos e coloca ordem nas ideias", personagem: "Princesa Jujuba" },
+                alternativaC: { texto: "Desce sentimentos em letras, melodias ou desenhos", personagem: "Marceline" },
+                alternativaD: { texto: "Transforma tudo em brincadeira e busca aprendizado", personagem: "BMO" }
+            }
+        },
     ]
 
-    // variáveis globais    
+    const descricoesPersonagens = {
+        "Finn": "Você assume a liderança com coragem e lealdade, defendendo quem precisa e transformando desafios em oportunidades para proteger os outros. Essa transparência emocional inspira confiança, fazendo o grupo se sentir amparado como no Finn que sempre enfrenta o desconhecido.",
+        "Jake": "Você mistura leveza, criatividade e flexibilidade para dissolver tensões e manter o ambiente acolhedor. Sua empatia prática faz as pessoas rirem, se sentirem confortáveis e enxergar o cotidiano com otimismo contagiante.",
+        "Princesa Jujuba": "Você resolve problemas complexos com planejamento preciso e empatia verdadeira, cuidando da comunidade com lógica estratégica e calor humano. Sua voz firme transmite segurança, enquanto o coração generoso acolhe sentimentos, exatamente como a Princesa Jujuba que governa com sabedoria e carinho.",
+        "Marceline": "Você expressa emoções de forma intensa através da arte, acolhendo dores alheias e traduzindo-as em afirmações autênticas. O modo sincero como você toca as pessoas transforma qualquer momento em uma jornada emocional compartilhada.",
+        "BMO": "Você transforma situações cotidianas em descobertas inventivas e está sempre pronto para aprender algo novo e dividir com o grupo. Sua curiosidade divertida cria conexões e mantém a energia otimista mesmo nos dias mais difíceis.",
+        "Rei Gelado/Simon Petrikov": "Você busca entender histórias profundas, usa o raciocínio lógico para proteger o que importa e aprende com os próprios momentos obscuros. Sua maturidade sensível mostra que o cuidado real envolve responsabilidade e a coragem de enfrentar sombras internas."
+    }
+
+    const imagensPersonagens = {
+        "Finn": "../assets/imgss/Finn.jpg",
+        "Jake": "../assets/imgss/Jake.jpg",
+        "Princesa Jujuba": "../assets/imgss/av1.png",
+        "Marceline": "../assets/imgss/Marceline.jpg",
+        "BMO": "../assets/imgss/BMO.jpg",
+        "Rei Gelado/Simon Petrikov": "../assets/imgss/av2.png"
+    }
+
+    const personagens = Object.keys(descricoesPersonagens)
+    let pontuacoes = {}
     let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+    let respondidas = 0
+    const quantidadeDeQuestoes = listaDeQuestoes.length
+    const btnIniciar = document.getElementById('btnIniciarQuiz')
+    const btnSubmeter = document.getElementById('btnSubmeter')
+    const btnTentarNovamente = document.getElementById('btnTentarNovamente')
+    const areaQuiz = document.getElementById('pontuacaoEJogo')
+    const jogoContainer = document.getElementById('jogo')
+    const resultadoContainer = document.getElementById('resultadoFinal')
+    const imgPersonagem = document.getElementById('imgPersonagem')
+    const nomePersonagem = document.getElementById('nomePersonagem')
+    const descricaoPersonagem = document.getElementById('descricaoPersonagem')
+    const containerPontuacao = document.getElementById('pontuacao')
 
     function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
-        document.getElementById('jogo').style.display = "none"
+        containerPontuacao.style.display = "none"
+        jogoContainer.style.display = "none"
+        resultadoContainer.style.display = "none"
     }
 
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
-        document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
-
+        btnIniciar.style.display = "none"
+        containerPontuacao.style.display = "none"
+        resultadoContainer.style.display = "none"
+        jogoContainer.style.display = "flex"
+        areaQuiz.style.display = "flex"
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
-
-        preencherHTMLcomQuestaoAtual(0)
-
+        reiniciarPontuacoes()
+        respondidas = 0
+        numeroDaQuestaoAtual = 0
+        desmarcarRadioButtons()
+        limparCoresBackgroundOpcoes()
+        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        habilitarAlternativas(true)
         btnSubmeter.disabled = false
-        btnProx.disabled = true
-        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = true
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
-        habilitarAlternativas(true)
         const questaoAtual = listaDeQuestoes[index]
         numeroDaQuestaoAtual = index
-        console.log("questaoAtual")
-        console.log(questaoAtual)
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
-        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativas.alternativaA.texto
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativas.alternativaB.texto
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativas.alternativaC.texto
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativas.alternativaD.texto
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); // recupera alternativas no html
-
-        let hasChecked = false
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].checked) {
-                hasChecked = true
-                break
-            }
+        const options = Array.from(document.getElementsByName("option"))
+        const selecionada = options.find(option => option.checked)
+        if (!selecionada) {
+            alert("Escolha uma alternativa antes de continuar.")
+            return
         }
-
-        if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
-        } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
-
-            habilitarAlternativas(false)
-
-            checarResposta()
-        }
+        btnSubmeter.disabled = true
+        habilitarAlternativas(false)
+        registrarResposta(selecionada.value)
+        prepararProximoPasso()
     }
 
-    function habilitarAlternativas(trueOrFalse) {
-        let opcaoEscolhida = trueOrFalse ? false : true
-
-        primeiraOpcao.disabled = opcaoEscolhida
-        segundaOpcao.disabled = opcaoEscolhida
-        terceiraOpcao.disabled = opcaoEscolhida
-        quartaOpcao.disabled = opcaoEscolhida
-
+    function registrarResposta(valorSelecionado) {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+        const alternativa = questaoAtual.alternativas[valorSelecionado]
+        if (!alternativa) {
+            return
+        }
+        pontuacoes[alternativa.personagem] += 1
+        respondidas += 1
+        numeroDaQuestaoAtual += 1
     }
 
-    function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
-
-        desmarcarRadioButtons()
-
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else {
-            finalizarJogo()
-        }
+    function prepararProximoPasso() {
         limparCoresBackgroundOpcoes()
+        desmarcarRadioButtons()
+        if (respondidas >= quantidadeDeQuestoes) {
+            finalizarJogo()
+            return
+        }
+        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        habilitarAlternativas(true)
+        btnSubmeter.disabled = false
+    }
+
+    function habilitarAlternativas(liberar) {
+        const desabilitar = liberar ? false : true
+        primeiraOpcao.disabled = desabilitar
+        segundaOpcao.disabled = desabilitar
+        terceiraOpcao.disabled = desabilitar
+        quartaOpcao.disabled = desabilitar
     }
 
     function tentarNovamente() {
-        // atualiza a página
         window.location.reload()
     }
 
-    function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
-
-        const options = document.getElementsByName("option"); // recupera alternativas no html
-
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
-
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
-            }
-        })
-
-        // verifica se resposta assinalada é correta
-        options.forEach((option) => {
-            if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
-            } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
-
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
-            }
-        })
+    function finalizarJogo() {
+        const resultado = obterPersonagemComMaiorPontuacao()
+        const descricao = descricoesPersonagens[resultado.nome]
+        const imagem = imagensPersonagens[resultado.nome] || "../assets/imgss/Logo.png"
+        btnIniciar.style.display = "none"
+        jogoContainer.style.display = "none"
+        areaQuiz.style.display = "none"
+        resultadoContainer.style.display = "flex"
+        nomePersonagem.textContent = resultado.nome
+        descricaoPersonagem.textContent = descricao
+        imgPersonagem.src = imagem
+        imgPersonagem.alt = resultado.nome
+        btnSubmeter.disabled = true
+        btnTentarNovamente.disabled = false
     }
 
-    function limparCoresBackgroundOpcoes() {
-        const options = document.getElementsByName("option");
-        options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+    function obterPersonagemComMaiorPontuacao() {
+        const entradas = Object.entries(pontuacoes)
+        entradas.sort((a, b) => b[1] - a[1])
+        const maiorPontuacao = entradas[0][1]
+        const empatados = entradas.filter(([_, pontos]) => pontos === maiorPontuacao)
+        return { nome: empatados[0][0], pontos: maiorPontuacao }
+    }
+
+    function reiniciarPontuacoes() {
+        pontuacoes = {}
+        personagens.forEach(personagem => {
+            pontuacoes[personagem] = 0
         })
     }
 
     function desmarcarRadioButtons() {
-        const options = document.getElementsByName("option");
+        const options = document.getElementsByName("option")
         for (let i = 0; i < options.length; i++) {
-            options[i].checked = false;
+            options[i].checked = false
         }
     }
 
-    function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
-
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
-
-
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray") 
-
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
-
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option")
+        options.forEach((option) => {
+            if (option.labels && option.labels[0]) {
+                option.labels[0].classList.remove("text-danger-with-bg")
+                option.labels[0].classList.remove("text-success-with-bg")
+            }
+        })
     }
 </script>
