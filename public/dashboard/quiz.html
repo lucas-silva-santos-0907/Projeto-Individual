@@ -76,6 +76,10 @@
                     <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
                     <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
                 </span>
+                <span>
+                    <input type="radio" id="quintaOpcao" name="option" class="radio" value="alternativaE" />
+                    <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
+                </span>
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
@@ -144,64 +148,71 @@
         {
             pergunta: "Quando um amigo precisa desabafar sobre problemas em casa, você:",
             alternativas: {
-                alternativaA: { texto: "Escuta, oferece companhia e deixa claro que ele não está sozinho", personagem: "Finn" },
-                alternativaB: { texto: "Joga umas frases leves para quebrar a tensão do momento", personagem: "Jake" },
-                alternativaC: { texto: "Organiza um plano simples e mostra o passo a passo para ajudar", personagem: "Princesa Jujuba" },
-                alternativaD: { texto: "Compartilha experiências e lembra que emoções são válidas", personagem: "Marceline" }
+                alternativaA: { texto: "Escuta, oferece companhia e reafirma que ele não está sozinho", personagem: "Finn" },
+                alternativaB: { texto: "Joga frases leves, conta histórias engraçadas e descontrai o espaço", personagem: "Jake" },
+                alternativaC: { texto: "Organiza um plano simples, divide tarefas e traz segurança emocional", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Compartilha sentimentos por meio da arte e cria intimidade emocional", personagem: "Marceline" },
+                alternativaE: { texto: "Analisa o que pode ser feito e oferece soluções estruturadas", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
-            pergunta: "Como você lida com pressão de tarefas acumuladas em um único dia?",
+            pergunta: "Como você lida com pressão de várias tarefas no mesmo dia?",
             alternativas: {
-                alternativaA: { texto: "Faço listas claras, priorizo e cobro resultados com carinho", personagem: "Princesa Jujuba" },
-                alternativaB: { texto: "Ergo o astral do grupo e intercalo tarefas com pausas criativas", personagem: "Jake" },
-                alternativaC: { texto: "Encaro cada desafio com coragem e foco", personagem: "Finn" },
-                alternativaD: { texto: "Transformo tudo em uma brincadeira para manter a motivação", personagem: "BMO" }
+                alternativaA: { texto: "Faço listas claras, priorizo e organizo cada etapa com calma", personagem: "Princesa Jujuba" },
+                alternativaB: { texto: "Intercalo tarefas com pausas criativas e mantenho o bom humor", personagem: "Jake" },
+                alternativaC: { texto: "Encaro cada desafio com coragem e foco para concluir um a um", personagem: "Finn" },
+                alternativaD: { texto: "Transformo tudo em um desafio divertido para manter o otimismo", personagem: "BMO" },
+                alternativaE: { texto: "Reúno dados do que já funcionou e redefino prioridades com lógica", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
-            pergunta: "Você encontra uma mensagem ofensiva nas redes; como reage?",
+            pergunta: "Quando percebe que alguém está espalhando boatos ou informações falsas, você:",
             alternativas: {
-                alternativaA: { texto: "Respondo com calma e dados para mostrar outra visão", personagem: "Rei Gelado/Simon Petrikov" },
-                alternativaB: { texto: "Mostro apoio à pessoa afetada com palavras sensíveis", personagem: "Finn" },
-                alternativaC: { texto: "Faço arte ou música para expressar o impacto emocional", personagem: "Marceline" },
-                alternativaD: { texto: "Uso humor para dissipar o clima sem ignorar o que aconteceu", personagem: "Jake" }
+                alternativaA: { texto: "Tenta apoiar emocionalmente quem foi afetado", personagem: "Finn" },
+                alternativaB: { texto: "Usa humor para aliviar a pressão e lembrar que tudo passa", personagem: "Jake" },
+                alternativaC: { texto: "Organiza os fatos, busca fontes confiáveis e expõe a verdade", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Cria algo artístico para transformar o momento em reflexão", personagem: "Marceline" },
+                alternativaE: { texto: "Investiga dados e compartilha uma resposta estruturada com evidências", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
-            pergunta: "Quando um encontro com amigos vira um caos, você:",
+            pergunta: "O evento com amigos está desorganizado, com conflitos e decisões difíceis; como age?",
             alternativas: {
-                alternativaA: { texto: "Crio harmonia organizando um plano simples e acolhedor", personagem: "Princesa Jujuba" },
-                alternativaB: { texto: "Ralho menos e improviso uma atividade divertida", personagem: "Jake" },
-                alternativaC: { texto: "Incentivo a caminhada coletiva para transformar em aventura", personagem: "Finn" },
-                alternativaD: { texto: "Escrevo algo emocional para lembrar do valor da amizade", personagem: "Marceline" }
+                alternativaA: { texto: "Sugiro algo divertido e improviso um plano flexível", personagem: "Jake" },
+                alternativaB: { texto: "Uso listas e tecnologia para reunir ideias e organizar o fluxo", personagem: "BMO" },
+                alternativaC: { texto: "Reúno todo mundo, explico prioridades e aplico estratégia", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Faço uma trilha, mantenho o espírito aventureiro e cuido da coragem geral", personagem: "Finn" },
+                alternativaE: { texto: "Analiso o que deu errado e defino limites para proteger o grupo", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
-            pergunta: "No tempo livre, o que te recarrega?",
+            pergunta: "No tempo livre, o que mais te recarrega?",
             alternativas: {
-                alternativaA: { texto: "Passar tempo ao ar livre ou praticar esportes", personagem: "Finn" },
-                alternativaB: { texto: "Criar música, escrever ou dar voz ao que sente", personagem: "Marceline" },
-                alternativaC: { texto: "Experimentar ideias novas, resolver bugs ou desafios", personagem: "BMO" },
-                alternativaD: { texto: "Conversar, rir e manter a energia do grupo", personagem: "Jake" }
+                alternativaA: { texto: "Passar tempo na natureza, praticar esportes e respirar ar livre", personagem: "Finn" },
+                alternativaB: { texto: "Criar música, escrever ou desenhar e processar emoções profundas", personagem: "Marceline" },
+                alternativaC: { texto: "Desenhar experimentos, jogos e compartilhar descobertas divertidas", personagem: "BMO" },
+                alternativaD: { texto: "Conversar, rir e manter o grupo unido com brincadeiras espontâneas", personagem: "Jake" },
+                alternativaE: { texto: "Organizar o tempo e cuidar das tarefas com precisão e disciplina", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
-            pergunta: "Como ajuda alguém que perdeu a motivação?",
+            pergunta: "Como ajuda um amigo que perdeu a motivação?",
             alternativas: {
-                alternativaA: { texto: "Escuto, validando o que sente e ofereço suporte constante", personagem: "Finn" },
-                alternativaB: { texto: "Levo leveza e lembro dos momentos divertidos que vivemos", personagem: "Jake" },
-                alternativaC: { texto: "Organizo metas práticas e apoio emocional para seguir em frente", personagem: "Princesa Jujuba" },
-                alternativaD: { texto: "Crio algo artístico para traduzir o que ele sente", personagem: "Marceline" }
+                alternativaA: { texto: "Escuto, valido sentimentos e fico presente para apoiá-lo", personagem: "Finn" },
+                alternativaB: { texto: "Levo leveza, boas memórias e planos engraçados para levantar o astral", personagem: "Jake" },
+                alternativaC: { texto: "Ajudo a montar metas práticas, cronogramas e apoio emocional", personagem: "Princesa Jujuba" },
+                alternativaD: { texto: "Crio algo artístico ou divertido para lembrar quem ele é", personagem: "Marceline" },
+                alternativaE: { texto: "Apresento dados e pequenos passos para recuperar o ritmo com lógica", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
             pergunta: "O que faz você se sentir útil em um grupo?",
             alternativas: {
-                alternativaA: { texto: "Apoiar os outros com coragem e cuidado", personagem: "Finn" },
-                alternativaB: { texto: "Planejar soluções e manter o equilíbrio em momentos tensos", personagem: "Princesa Jujuba" },
-                alternativaC: { texto: "Ouvir, expressar sentimentos e acolher o que aflora", personagem: "Marceline" },
-                alternativaD: { texto: "Trazer humor e espontaneidade para aproximar todos", personagem: "Jake" }
+                alternativaA: { texto: "Apoiar os outros com coragem e proteção", personagem: "Finn" },
+                alternativaB: { texto: "Planejar soluções e manter o equilíbrio emocional", personagem: "Princesa Jujuba" },
+                alternativaC: { texto: "Trazer humor e espontaneidade para aproximar as pessoas", personagem: "Jake" },
+                alternativaD: { texto: "Apresentar ideias curiosas e manter a energia positiva", personagem: "BMO" },
+                alternativaE: { texto: "Apresentar estratégias sólidas para cuidar de todos", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
@@ -210,27 +221,30 @@
                 alternativaA: { texto: "Seguir a intuição e agir com bravura", personagem: "Finn" },
                 alternativaB: { texto: "Buscar evidências e lógica antes de agir", personagem: "Rei Gelado/Simon Petrikov" },
                 alternativaC: { texto: "Conversar com o grupo para alinhar a melhor saída", personagem: "Princesa Jujuba" },
-                alternativaD: { texto: "Transformar o processo em experimento e aprender com ele", personagem: "BMO" }
+                alternativaD: { texto: "Transformar o processo em experimentos e testar possibilidades", personagem: "BMO" },
+                alternativaE: { texto: "Explorar como se sente e perceber as sensações do corpo", personagem: "Marceline" }
             }
         },
         {
             pergunta: "Qual cenário torna seu dia mais significativo?",
             alternativas: {
                 alternativaA: { texto: "Fazer algo pelo outro e garantir que ele se sinta seguro", personagem: "Finn" },
-                alternativaB: { texto: "Organizar tudo nos bastidores e trazer paz", personagem: "Princesa Jujuba" },
-                alternativaC: { texto: "Criar arte ou música que emociona quem está por perto", personagem: "Marceline" },
-                alternativaD: { texto: "Inventar novas histórias, jogos e experiências", personagem: "BMO" }
+                alternativaB: { texto: "Organizar tudo nos bastidores e trazer paz coletiva", personagem: "Princesa Jujuba" },
+                alternativaC: { texto: "Criar arte, música ou histórias emocionantes", personagem: "Marceline" },
+                alternativaD: { texto: "Inventar novas histórias, jogos e experiências coletivas", personagem: "BMO" },
+                alternativaE: { texto: "Relembrar conquistas, proteger o próximo e planejar o futuro", personagem: "Rei Gelado/Simon Petrikov" }
             }
         },
         {
             pergunta: "Quando a ansiedade aparece à noite, você:",
             alternativas: {
                 alternativaA: { texto: "Conversa com alguém e busca força na amizade", personagem: "Finn" },
-                alternativaB: { texto: "Organiza os pensamentos e coloca ordem nas ideias", personagem: "Princesa Jujuba" },
+                alternativaB: { texto: "Organiza pensamentos e coloca ordem nas ideias", personagem: "Princesa Jujuba" },
                 alternativaC: { texto: "Desce sentimentos em letras, melodias ou desenhos", personagem: "Marceline" },
-                alternativaD: { texto: "Transforma tudo em brincadeira e busca aprendizado", personagem: "BMO" }
+                alternativaD: { texto: "Transforma tudo em brincadeira e aprendizado", personagem: "BMO" },
+                alternativaE: { texto: "Investiga o que é preciso desacelerar para proteger a si e aos outros", personagem: "Rei Gelado/Simon Petrikov" }
             }
-        },
+        }
     ]
 
     const descricoesPersonagens = {
@@ -259,6 +273,7 @@
     const btnIniciar = document.getElementById('btnIniciarQuiz')
     const btnSubmeter = document.getElementById('btnSubmeter')
     const btnTentarNovamente = document.getElementById('btnTentarNovamente')
+    const quintaOpcao = document.getElementById('quintaOpcao')
     const areaQuiz = document.getElementById('pontuacaoEJogo')
     const jogoContainer = document.getElementById('jogo')
     const resultadoContainer = document.getElementById('resultadoFinal')
@@ -300,6 +315,7 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativas.alternativaB.texto
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativas.alternativaC.texto
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativas.alternativaD.texto
+        document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativas.alternativaE.texto
     }
 
     function submeter() {
@@ -344,6 +360,7 @@
         segundaOpcao.disabled = desabilitar
         terceiraOpcao.disabled = desabilitar
         quartaOpcao.disabled = desabilitar
+        quintaOpcao.disabled = desabilitar
     }
 
     function tentarNovamente() {
