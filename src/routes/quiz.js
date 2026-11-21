@@ -13,4 +13,9 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
+router.get("/contagens", function (req, res) {
+    // função a ser chamada quando acessar /quiz/contagens
+    quizController.contagens(req, res);
+});
+
 module.exports = router;

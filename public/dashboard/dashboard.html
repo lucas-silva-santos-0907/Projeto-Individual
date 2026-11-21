@@ -59,7 +59,8 @@
             </div>
                     
             <div class="kpi">
-    
+            <h3>Meu personagem</h3>
+            <span id="personagemKpi">Carregando...</span>
             </div>
 
     </div>
@@ -67,11 +68,12 @@
             <div class="graficos">
 
                 <div class="grafico">
-    
+                <h3>Personagens mais populares</h3>
+                <canvas id="graficoPersonagens"></canvas>
                 </div>
 
                 <div class="grafico">
-    
+
                 </div>
 
             </div>
@@ -133,7 +135,47 @@
 
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = function () {
+    carregarPersonagemKpi();
+    carregarGraficoPersonagens();
+    };
+    // window.onload = exibirAquariosDoUsuario();
+
+    function carregarGraficoPersonagens() {
+    fetch("/quiz/contagens")
+      .then(resposta => {
+        if (!resposta.ok) throw new Error("Erro ao buscar o ranking");
+        return resposta.json();
+      })
+      .then(dados => {
+        if (!dados || !dados.length) {
+          document.getElementById("graficoPersonagens").style.display = "none";
+          return;
+        }
+        const labels = dados.map(item => item.nome);
+        const totals = dados.map(item => item.total);
+        const ctx = document.getElementById("graficoPersonagens").getContext("2d");
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels,
+            datasets: [{
+              data: totals,
+              backgroundColor: ['#F44336', '#FF9800', '#009688', '#3F51B5', '#009688', '#FFC107'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom',} },
+            maintainAspectRatio: false
+          }
+        });
+      })
+      .catch(erro => {
+        console.error("Erro ao carregar gráfico de personagens:", erro);
+      });
+}
 
     function exibirAquariosDoUsuario() {
         var aquarios = JSON.parse(sessionStorage.AQUARIOS);
@@ -354,6 +396,32 @@
             });
 
     }
+
+    function carregarPersonagemKpi() {
+
+    const idUsuario = sessionStorage.ID_USUARIO;
+    if (!idUsuario) {
+    console.warn("Usuário sem sessão; não há KPI de personagem.");
+    return;
+    }
+
+    fetch("/quiz/listar?fkUsuario=" + sessionStorage.ID_USUARIO)
+        .then(resposta => {
+            if (!resposta.ok) {
+                throw new Error("Erro ao buscar personagem");
+            }
+
+            return resposta.json();
+        })
+        .then(dados => {
+        if (!dados || !dados.length) {
+        document.getElementById("personagemKpi").textContent = "Nenhum quiz";
+        return;
+    }
+        document.getElementById("personagemKpi").textContent = dados[0].nome;
+    });
+
+}
 </script>
 
 

@@ -454,6 +454,8 @@ canvas {
     width: 80%;
     justify-content: space-between;
     height: 155px;
+    font-family: 'Pixelify Sans', sans-serif;
+
 }
 
 
@@ -472,6 +474,8 @@ canvas {
     justify-content: space-between;
     height: 300px;
     align-items: center;
+    font-family: 'Pixelify Sans', sans-serif;
+
 }
 
 .grafico {
@@ -480,6 +484,19 @@ canvas {
   height: 270px;
   border-radius: 10px;
   border: 2px solid #75AF88;
+}
+
+.grafico h3 {
+  margin: 1px 1px 1px 10px;
+}
+
+.grafico canvas {
+    width: 100% !important;
+    height: 90% !important;
+    display: block;
+    object-fit: contain;
+    padding: 0;
+    
 }
 
 .btn-sla {

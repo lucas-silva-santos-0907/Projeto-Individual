@@ -29,10 +29,43 @@ CONSTRAINT fk_personagem FOREIGN KEY (fkPersonagem)
 CREATE TABLE mural (
 id INT PRIMARY KEY AUTO_INCREMENT,
 conteudo VARCHAR(500),
-dtPublicacao DATETIME,
+dtPublicacao DATETIME DEFAULT CURRENT_TIMESTAMP,
 fkUsuario INT,
 CONSTRAINT fk_user FOREIGN KEY (fkUsuario)
 								REFERENCES usuario(id)
+);
+
+CREATE TABLE comentario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    conteudo VARCHAR(500),
+    dtComentario DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fkUsuario INT,
+    fkMural INT,
+
+    CONSTRAINT fk_comentario_usuario
+        FOREIGN KEY (fkUsuario)
+        REFERENCES usuario(id),
+
+    CONSTRAINT fk_comentario_mural
+        FOREIGN KEY (fkMural)
+        REFERENCES mural(id)
+);
+
+CREATE TABLE curtida (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario INT,
+    fkMural INT,
+
+    CONSTRAINT fk_curtida_usuario
+        FOREIGN KEY (fkUsuario)
+        REFERENCES usuario(id),
+
+    CONSTRAINT fk_curtida_mural
+        FOREIGN KEY (fkMural)
+        REFERENCES mural(id),
+
+    CONSTRAINT uk_usuario_mural
+        UNIQUE (fkUsuario, fkMural)
 );
 
 SELECT * FROM usuario;
@@ -47,19 +80,26 @@ INSERT INTO personagem (nome, descricao) VALUES
 
 SELECT * FROM personagem;
 
-INSERT INTO quiz (fkUsuario, fkPersonagem) VALUES
-(1, 1);
+SELECT * FROM usuario;
 
 SELECT * FROM quiz;
 
+INSERT INTO quiz (fkUsuario, fkPersonagem) VALUES
+(1, 1);
 
 
 SELECT
-    p.nome,
-    p.descricao
+    p.nome
 FROM quiz AS q
 INNER JOIN personagem AS p
     ON q.fkPersonagem = p.id
-WHERE q.fkUsuario = 1
+WHERE q.fkUsuario = 2
 ORDER BY q.dtRealizacao DESC, q.id DESC
 LIMIT 1;
+
+SELECT p.nome, 
+	COUNT(*) AS total 
+FROM quiz q 
+JOIN personagem p ON q.fkPersonagem = p.id 
+GROUP BY p.nome;
+
