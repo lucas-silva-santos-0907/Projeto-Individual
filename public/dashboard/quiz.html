@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo - Quiz</title>
     <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="../js/sessao.js"></script> 
 </head>
 
 
@@ -14,106 +15,113 @@
 
     <div class="janela">
         <div class="dash">
-        
-        <div class="header-BMO">
-            <div class="hello">
-                <h2>DASHBOARD</h2>
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-            <div class="foto-perfil">
-                <img src="../assets/imgss/finn icon.jpg" alt="Foto de Perfil">
-            </div>
 
-        </div>
+            <div class="header-BMO">
+                <div class="hello">
+                    <h2>DASHBOARD</h2>
+                    <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                </div>
+                <div class="foto-perfil">
+                    <img src="../assets/imgss/finn icon.jpg" alt="Foto de Perfil">
+                </div>
 
-        
-<div  class="quiz">
-    <div id="pontuacaoEJogo" class="quiz-box">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
-
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
-        </div>
-
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
-            <div id="infoQuestao" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
             </div>
 
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
+
+            <div class="quiz">
+                <div id="pontuacaoEJogo" class="quiz-box">
+                    <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+                    <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+                        <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                            <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                            <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                        </div>
+                        <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                            <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                                <span id="spanPontuacaoFinal">***</span>
+                            </span>
+                            <span id="msgFinal" class="width-fit-content">***</span>
+                        </div>
+                    </div>
+
+                    <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+
+                        <div id="infoQuestao" class="padding-8">
+                            <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span
+                                    id="qtdQuestoes"></span>
+                                questões.</span>
+                        </div>
+
+                        <div id="perguntaDaQuestaoAtual" class="padding-8">
+                            <span id="spanQuestaoExibida" class="text-bold"></span>
+                        </div>
+
+                        <div id="infoAlternativas" class="padding-8">
+                            <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                        </div>
+
+                        <div id="opcoes" class="flex-colunar padding-8 questoes">
+                            <span>
+                                <input type="radio" id="primeiraOpcao" name="option" class="radio"
+                                    value="alternativaA" />
+                                <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="segundaOpcao" name="option" class="radio"
+                                    value="alternativaB" />
+                                <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="terceiraOpcao" name="option" class="radio"
+                                    value="alternativaC" />
+                                <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                                <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                            </span>
+                            <span>
+                                <input type="radio" id="quintaOpcao" name="option" class="radio" value="alternativaE" />
+                                <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
+                            </span>
+                        </div>
+
+                        <div id="botoes" class="flex-colunar padding-8">
+                            <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                            <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar
+                                novamente</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="resultadoFinal" class="resultado-final flex-colunar padding-16" style="display:none;">
+                    <img id="imgPersonagem" src="" alt="Personagem"
+                        style="max-width:250px; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.2);" />
+                    <h3 id="nomePersonagem" style="margin-top:16px; text-transform:uppercase; letter-spacing:1px;"></h3>
+                    <p id="descricaoPersonagem"
+                        style="margin-top:12px; text-align:center; max-width:360px; line-height:1.5;"></p>
+                </div>
             </div>
 
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
+            <div id="alerta">
 
-            <div id="opcoes" class="flex-colunar padding-8 questoes">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quintaOpcao" name="option" class="radio" value="alternativaE" />
-                    <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
-                </span>
-            </div>
-
-            <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="resultadoFinal" class="resultado-final flex-colunar padding-16" style="display:none;">
-        <img id="imgPersonagem" src="" alt="Personagem" style="max-width:250px; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.2);" />
-        <h3 id="nomePersonagem" style="margin-top:16px; text-transform:uppercase; letter-spacing:1px;"></h3>
-        <p id="descricaoPersonagem" style="margin-top:12px; text-align:center; max-width:360px; line-height:1.5;"></p>
-    </div>
-</div>
-
-        <div id="alerta">
-            
             </div>
 
             <div id="graficos">
             </div>
         </div>
     </div>
-       
+
     <div class="footer-dash">
-      <div class="container">
-         
-        <div>
-            <a href="./dashboard.html" class="btn-sla">
-                <h3>Principal</h3>
-            </a>
-        </div>
+        <div class="container">
+
+            <div>
+                <a href="./dashboard.html" class="btn-sla">
+                    <h3>Principal</h3>
+                </a>
+            </div>
 
             <div>
                 <a href="./quiz.html" class="btn-sla-pers">
@@ -138,17 +146,20 @@
                 <h3>Sair</h3>
             </div>
 
-      </div>
+        </div>
     </div>
 </body>
 
 </html>
+
+<script src="../js/personagens.js"></script>
+
 <script>
     const listaDeQuestoes = [
         {
             pergunta: "Quando um amigo precisa desabafar sobre problemas em casa, você:",
             alternativas: {
-                alternativaA: { texto: "Escuta, oferece companhia e reafirma que ele não está sozinho", personagem: "Finn" },
+                alternativaA: { texto: "Escuta, oferece companhia e reafirma que ele não está sozinho", personagem: "Finn"},
                 alternativaB: { texto: "Joga frases leves, conta histórias engraçadas e descontrai o espaço", personagem: "Jake" },
                 alternativaC: { texto: "Organiza um plano simples, divide tarefas e traz segurança emocional", personagem: "Princesa Jujuba" },
                 alternativaD: { texto: "Compartilha sentimentos por meio da arte e cria intimidade emocional", personagem: "Marceline" },
@@ -246,6 +257,15 @@
             }
         }
     ]
+        
+        const idsPersonagens = {
+        "Finn": 1,
+        "Jake": 2,
+        "BMO": 3,
+        "Princesa Jujuba": 4,
+        "Marceline": 5,
+        "Rei Gelado/Simon Petrikov": 6
+    };
 
     const descricoesPersonagens = {
         "Finn": "Você assume a liderança com coragem e lealdade, defendendo quem precisa e transformando desafios em oportunidades para proteger os outros. Essa transparência emocional inspira confiança, fazendo o grupo se sentir amparado como no Finn que sempre enfrenta o desconhecido.",
@@ -369,6 +389,28 @@
 
     function finalizarJogo() {
         const resultado = obterPersonagemComMaiorPontuacao()
+        const personagemId = idsPersonagens[resultado.nome];
+    const payload = {
+    fkUsuario: Number(sessionStorage.ID_USUARIO),
+    fkPersonagem: personagemId
+    };
+
+    console.log(payload);
+
+        
+fetch("/quiz/cadastrar", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload)
+})
+  .then(response => {
+    if (!response.ok) return response.text().then(text => { throw new Error(text) });
+    return response.text();
+  })
+  .then(() => console.log("Quiz salvo com sucesso"))
+  .catch(error => console.error("Erro ao salvar quiz:", error));
+
+
         const descricao = descricoesPersonagens[resultado.nome]
         const imagem = imagensPersonagens[resultado.nome] || "../assets/imgss/Logo.png"
         btnIniciar.style.display = "none"
