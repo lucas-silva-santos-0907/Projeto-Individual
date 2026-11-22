@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Avisos</title>
+    <title>AquaTech | Mural</title>
 
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
@@ -21,75 +21,70 @@
 
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
 
-    
     <div class="janela">
         <div class="dash">
-        
-        <div class="header-BMO">
-            <div class="hello">
-                <h2>MURAL</h2>
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-            <div class="foto-perfil">
-                <img src="../assets/imgss/finn icon.jpg" alt="Foto de Perfil">
-            </div>
-        </div>
-
-        
-        <div class="dash-right">
-
-
-            <div class="avisos">
-                <div id="alerta">
+            <div class="header-BMO">
+                <div class="hello">
+                    <h2>MURAL</h2>
+                    <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
                 </div>
-                <div class="container">
-                    <h1>Compartilhe suas aventuras em Ooo!</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
+                <div class="foto-perfil">
+                    <img src="../assets/imgss/finn icon.jpg" alt="Foto de Perfil">
+                </div>
+            </div>
+
+            <div class="dash-right">
+                <div class="mural">
+                    <div id="alerta"></div>
+                    <div class="mural-header">
+                        <div>
+                            <h1>MURAL</h1>
+                            <p>Compartilhe suas aventuras em Ooo!</p>
+                        </div>
+                        <div class="mural-avatar">
+                            <img src="../assets/imgss/BMO.jpg" alt="Avatar" />
                         </div>
                     </div>
+
+                    <div class="mural-form">
+                        <div class="mural-form-title">O que está acontecendo, aventureiro?</div>
+                        <form id="form_postagem" method="post" onsubmit="return publicar()">
+                            <textarea name="descricao" id="textarea_descricao" maxlength="250"
+                                placeholder="Escreva algo para compartilhar com a comunidade..."></textarea>
+                            <div class="mural-form-footer">
+                                <span>Compartilhe suas ideias!</span>
+                                <button class="mural-button" type="submit">PUBLICAR</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="mural-feed">
+                        <div class="mural-feed-header">
+                            <h2>Publicações recentes</h2>
+                            <span id="feed_status" class="mural-feed-status"></span>
+                        </div>
+                        <div id="feed_container" class="feed-container"></div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div id="graficos"></div>
     </div>
 
-        <div id="alerta">
-            
+    <div class="footer-dash">
+        <div class="container">
+            <div>
+                <a href="./dashboard.html" class="btn-sla">
+                    <h3>Principal</h3>
+                </a>
             </div>
-
-            <div id="graficos">
-            </div>
-        </div>
-    </div>
-
-        <div class="footer-dash">
-      <div class="container">
-         
-        <div>
-            <a href="./dashboard.html" class="btn-sla">
-                <h3>Principal</h3>
-            </a>
-        </div>
 
             <div>
                 <a href="./quiz.html" class="btn-sla-pers">
                     <h3>Quiz de Personalidade</h3>
                 </a>
             </div>
-
 
             <div>
                 <a href="./mural.html" class="btn-sla">
@@ -106,163 +101,307 @@
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-
-      </div>
+        </div>
     </div>
 
+    <script>
+        var formPostagem = document.getElementById("form_postagem");
+        var feedContainer = document.getElementById("feed_container");
+        var feedStatus = document.getElementById("feed_status");
 
+        function limparFormulario() {
+            formPostagem.reset();
+        }
 
+        function publicar() {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            var conteudo = formPostagem.descricao.value.trim();
+
+            if (!conteudo) {
+                window.alert("Escreva algo antes de publicar!");
+                return false;
+            }
+
+            if (!idUsuario) {
+                window.alert("Sua sessão expirou. Faça login novamente.");
+                return false;
+            }
+
+            var corpo = { conteudo: conteudo };
+
+            fetch(`/mural/publicar/${idUsuario}`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(corpo)
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    window.alert("Post realizado com sucesso!");
+                    limparFormulario();
+                    atualizarFeed();
+                } else {
+                    return resposta.text().then(function (texto) { throw texto; });
+                }
+            }).catch(function (erro) {
+                console.log("#ERRO: ", erro);
+                window.alert("Não foi possível publicar. Tente novamente.");
+            });
+
+            return false;
+        }
+
+        function atualizarFeed() {
+            var idUsuario = sessionStorage.ID_USUARIO || 0;
+            feedStatus.textContent = "Carregando publicações...";
+            fetch(`/mural/listar/${idUsuario}`, { cache: 'no-store' })
+                .then(function (resposta) {
+                    if (resposta.status == 204) {
+                        feedContainer.innerHTML = `<span class="mural-empty">Nenhuma publicação encontrada.</span>`;
+                        feedStatus.textContent = "";
+                        return [];
+                    }
+                    if (!resposta.ok) {
+                        throw `Erro ao carregar o mural (${resposta.status})`;
+                    }
+                    return resposta.json();
+                })
+                .then(function (publicacoes) {
+                    feedContainer.innerHTML = "";
+                    if (!publicacoes || publicacoes.length === 0) {
+                        feedContainer.innerHTML = `<span class="mural-empty">Nenhuma publicação encontrada.</span>`;
+                        feedStatus.textContent = "";
+                        return;
+                    }
+
+                    publicacoes.forEach(function (publicacao) {
+                        feedContainer.appendChild(criarCard(publicacao));
+                    });
+                    feedStatus.textContent = "";
+                })
+                .catch(function (erro) {
+                    feedContainer.innerHTML = `<span class="mural-empty">Não foi possível carregar o mural.</span>`;
+                    feedStatus.textContent = "";
+                    console.error(erro);
+                });
+        }
+
+        function criarCard(publicacao) {
+            var card = document.createElement("article");
+            card.className = "mural-card";
+
+            var header = document.createElement("div");
+            header.className = "mural-card-header";
+
+            var avatar = document.createElement("img");
+            avatar.className = "mural-avatar-small";
+            avatar.src = "../assets/imgss/finn icon.jpg";
+            avatar.alt = "Avatar";
+
+            var authorInfo = document.createElement("div");
+            var horario = formatarHorario(publicacao.dtPublicacao);
+            authorInfo.innerHTML = `<span class='mural-author'>${publicacao.nome}</span><br><small>${horario}</small>`;
+
+            header.appendChild(avatar);
+            header.appendChild(authorInfo);
+
+            var body = document.createElement("div");
+            body.className = "mural-card-body";
+            var texto = document.createElement("p");
+            texto.textContent = publicacao.conteudo;
+            body.appendChild(texto);
+
+            var actions = document.createElement("div");
+            actions.className = "mural-card-actions";
+
+            var likeButton = document.createElement("button");
+            likeButton.type = "button";
+            likeButton.className = publicacao.curtidoPorMim ? "mural-action-button mural-action-button--active" : "mural-action-button";
+            likeButton.textContent = publicacao.curtidoPorMim ? "Descurtir" : "Curtir";
+            likeButton.onclick = function () {
+                toggleCurtida(publicacao);
+            };
+
+            var likeCount = document.createElement("span");
+            likeCount.className = "mural-like-count";
+            var totalCurtidas = publicacao.totalCurtidas || 0;
+            likeCount.textContent = `${totalCurtidas} curtida${totalCurtidas === 1 ? "" : "s"}`;
+
+            actions.appendChild(likeButton);
+            actions.appendChild(likeCount);
+
+            var deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "mural-action-button mural-action-button--danger";
+            deleteButton.textContent = "Excluir";
+            deleteButton.onclick = function () {
+                deletarMural(publicacao.idMural);
+            };
+            actions.appendChild(deleteButton);
+
+            var comments = document.createElement("div");
+            comments.className = "mural-card-comments";
+            comments.appendChild(criarListaComentarios(publicacao.comentarios));
+
+            var commentForm = document.createElement("form");
+            commentForm.className = "mural-comment-form";
+            commentForm.onsubmit = function (evento) {
+                return comentarMural(evento, publicacao.idMural);
+            };
+
+            var textArea = document.createElement("textarea");
+            textArea.name = "comentario";
+            textArea.placeholder = "Escreva um comentário...";
+            textArea.maxLength = 250;
+
+            var commentButton = document.createElement("button");
+            commentButton.type = "submit";
+            commentButton.className = "mural-comment-btn";
+            commentButton.textContent = "Comentar";
+
+            commentForm.appendChild(textArea);
+            commentForm.appendChild(commentButton);
+            comments.appendChild(commentForm);
+
+            card.appendChild(header);
+            card.appendChild(body);
+            card.appendChild(actions);
+            card.appendChild(comments);
+
+            return card;
+        }
+
+        function criarListaComentarios(comentarios) {
+            var wrapper = document.createElement("div");
+            wrapper.className = "mural-comments-list";
+
+            if (!comentarios || comentarios.length === 0) {
+                var aviso = document.createElement("span");
+                aviso.className = "mural-comment-empty";
+                aviso.textContent = "Seja o primeiro a comentar!";
+                wrapper.appendChild(aviso);
+                return wrapper;
+            }
+
+            comentarios.forEach(function (comentario) {
+                var item = document.createElement("div");
+                item.className = "mural-comment";
+
+                var autor = document.createElement("strong");
+                autor.textContent = comentario.nomeUsuario;
+
+                var texto = document.createElement("p");
+                texto.textContent = comentario.conteudo;
+
+                var data = document.createElement("small");
+                data.className = "mural-comment-date";
+                data.textContent = formatarHorario(comentario.dtComentario);
+
+                item.appendChild(autor);
+                item.appendChild(texto);
+                item.appendChild(data);
+                wrapper.appendChild(item);
+            });
+
+            return wrapper;
+        }
+
+        function formatarHorario(valor) {
+            if (!valor) return "";
+            var data = new Date(valor);
+            return data.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+        }
+
+        function toggleCurtida(publicacao) {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            if (!idUsuario) {
+                window.alert("Faça login novamente para curtir");
+                return;
+            }
+
+            var endpoint = publicacao.curtidoPorMim ? `/mural/descurtir/${publicacao.idMural}/${idUsuario}` : `/mural/curtir/${publicacao.idMural}/${idUsuario}`;
+
+            fetch(endpoint, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    atualizarFeed();
+                } else {
+                    return resposta.text().then(function (texto) { throw texto; });
+                }
+            }).catch(function (erro) {
+                console.error(erro);
+                window.alert("Não foi possível atualizar a curtida.");
+            });
+        }
+
+        function deletarMural(idMural) {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            if (!idUsuario) {
+                window.alert("Faça login novamente para excluir o post.");
+                return;
+            }
+
+            if (!confirm("Deseja realmente excluir essa publicação?")) {
+                return;
+            }
+
+            fetch(`/mural/deletar/${idMural}/${idUsuario}`, {
+                method: "DELETE"
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    window.alert("Publicação removida com sucesso.");
+                    atualizarFeed();
+                } else {
+                    return resposta.text().then(function (texto) { throw texto; });
+                }
+            }).catch(function (erro) {
+                console.error(erro);
+                window.alert("Não foi possível excluir a publicação.");
+            });
+        }
+
+        function comentarMural(evento, idMural) {
+            evento.preventDefault();
+            var idUsuario = sessionStorage.ID_USUARIO;
+            var textArea = evento.target.querySelector("textarea");
+            var conteudo = textArea.value.trim();
+
+            if (!conteudo) {
+                window.alert("Escreva algo antes de comentar!");
+                return false;
+            }
+
+            if (!idUsuario) {
+                window.alert("Faça login novamente para comentar");
+                return false;
+            }
+
+            fetch(`/mural/comentar/${idMural}/${idUsuario}`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ conteudo: conteudo })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    textArea.value = "";
+                    atualizarFeed();
+                } else {
+                    return resposta.text().then(function (texto) { throw texto; });
+                }
+            }).catch(function (erro) {
+                console.error(erro);
+                window.alert("Não foi possível enviar o comentário.");
+            });
+
+            return false;
+        }
+    </script>
 
 </body>
 
 </html>
-
-<script>
-    
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
-    }
-
-    function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-
-        var corpo = {
-            descricao: form_postagem.descricao.value
-        }
-
-        fetch(`/avisos/publicar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
-        return false;
-
-    }
-
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
-
-    }
-
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
-
-    function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
-                }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
-
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
-
-
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
-
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
-
-                        divButtons.className = "div-buttons"
-
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
-                    }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
-
-</script>

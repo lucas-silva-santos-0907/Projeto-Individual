@@ -103,3 +103,4 @@ FROM quiz q
 JOIN personagem p ON q.fkPersonagem = p.id 
 GROUP BY p.nome;
 
+SELECT * FROM mural;

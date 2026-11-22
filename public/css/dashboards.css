@@ -69,6 +69,275 @@ body {
   width: 120px;
 }
 
+.mural {
+  background-color: #0d0d12;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 2px solid #1f1f26;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.mural-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.mural-header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+}
+
+.mural-header p {
+  margin: 4px 0 0;
+  color: #88f6b0;
+}
+
+.mural-avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid #88f6b0;
+}
+
+.mural-form {
+  background: linear-gradient(180deg, #9efab6, #5fd38f);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.mural-form-title {
+  font-size: 1.2rem;
+  color: #e8ffe5;
+  margin-bottom: 0.8rem;
+}
+
+.mural-form textarea {
+  width: 100%;
+  min-height: 120px;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: 'Barlow', sans-serif;
+  resize: vertical;
+}
+
+.mural-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.mural-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.mural-button {
+  border: none;
+  border-radius: 16px;
+  padding: 0.9rem 2.2rem;
+  background-color: #00c4ff;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mural-feed {
+  background-color: #121215;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 2px solid #1f1f26;
+}
+
+.mural-feed-header {
+  color: #f1fff0;
+  margin-bottom: 1rem;
+}
+
+.mural-card {
+  background: #1f1f26;
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  border: 1px solid #2a2a33;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mural-card + .mural-card {
+  margin-top: 0.6rem;
+}
+
+.mural-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.mural-avatar-small {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 2px solid #88f6b0;
+}
+
+.mural-author {
+  font-weight: 700;
+  color: #f6fff4;
+}
+
+.mural-card-body p {
+  margin: 0;
+  color: #ecffe7;
+  font-size: 1.05rem;
+}
+
+.mural-card-footer {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mural-card-footer button {
+  background: none;
+  border: none;
+  color: #00c4ff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.mural-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.mural-action-button {
+  border: none;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  background-color: #00c4ff;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.mural-action-button:hover {
+  transform: translateY(-2px);
+}
+
+.mural-action-button--active {
+  background-color: #f7b500;
+}
+
+.mural-action-button--danger {
+  background-color: #ff5f5f;
+}
+
+.mural-like-count {
+  font-size: 0.9rem;
+  color: #a4ffa3;
+  font-weight: 600;
+}
+
+.mural-card-comments {
+  margin-top: 1rem;
+}
+
+.mural-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mural-comment {
+  background-color: #101010;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #2a2a33;
+}
+
+.mural-comment strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #f0fff4;
+}
+
+.mural-comment p {
+  margin: 0.2rem 0;
+  color: #d3fcd6;
+  font-size: 0.9rem;
+}
+
+.mural-comment-date {
+  font-size: 0.75rem;
+  color: #758d78;
+}
+
+.mural-comment-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mural-comment-form textarea {
+  width: 100%;
+  min-height: 60px;
+  border-radius: 10px;
+  border: 1px solid #2e2e37;
+  background-color: #0f0f15;
+  color: #fff;
+  padding: 0.8rem;
+}
+
+.mural-comment-form textarea:focus {
+  outline: none;
+  border-color: #00c4ff;
+}
+
+.mural-comment-btn {
+  align-self: flex-end;
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 1.5rem;
+  background-color: #88f6b0;
+  color: #0d0d12;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mural-feed-status {
+  color: #88f6b0;
+  font-size: 0.9rem;
+}
+
+.mural-empty {
+  color: #9efab6;
+  display: inline-flex;
+  padding: 1rem;
+  background-color: #151515;
+  border-radius: 10px;
+}
+
+.mural-comment-empty {
+  color: #9efab6;
+  font-size: 0.9rem;
+}
+
 .publicacao-btn-editar {
   cursor: pointer;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
