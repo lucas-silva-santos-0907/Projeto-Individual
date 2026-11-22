@@ -70,19 +70,20 @@ body {
 }
 
 .mural {
-  background-color: #0d0d12;
-  padding: 2rem;
-  border-radius: 16px;
-  border: 2px solid #1f1f26;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background-color: #0d0d12;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 2px solid #1f1f26;
+    width: 60%;
+    height: 40%;
 }
 
 .mural-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 0.5rem;
 }
 
 .mural-header h1 {
@@ -107,7 +108,6 @@ body {
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .mural-form-title {
@@ -117,14 +117,14 @@ body {
 }
 
 .mural-form textarea {
-  width: 100%;
-  min-height: 120px;
-  border: none;
-  border-radius: 12px;
-  padding: 1rem;
-  font-size: 1rem;
-  font-family: 'Barlow', sans-serif;
-  resize: vertical;
+    width: 100%;
+    min-height: 60px;
+    border: none;
+    border-radius: 12px;
+    padding: 0rem;
+    font-size: 1rem;
+    font-family: 'Barlow', sans-serif;
+    resize: vertical;
 }
 
 .mural-form textarea:focus {
@@ -148,7 +148,6 @@ body {
   font-weight: 700;
   letter-spacing: 0.08rem;
   cursor: pointer;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .mural-feed {
@@ -295,7 +294,7 @@ body {
 }
 
 .mural-comment-form textarea {
-  width: 100%;
+  width: 97%;
   min-height: 60px;
   border-radius: 10px;
   border: 1px solid #2e2e37;
@@ -651,6 +650,7 @@ canvas {
     background-color: #BDF7D1;
     height: 80vh;
     overflow: auto;
+    justify-content: center;
 }
 
 .header-left h1 {
@@ -729,11 +729,14 @@ canvas {
 
 
 .kpi {
-  background-color: #87D09F;
-  width: 300px;
-  height: 150px;
-  border-radius: 10px;
-  border: 2px solid #75AF88;
+    background-color: #87D09F;
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+    border: 2px solid #75AF88;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .graficos {

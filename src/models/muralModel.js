@@ -120,6 +120,52 @@ function deletar(idMural) {
     }, Promise.resolve());
 }
 
+function totalCurtidasUsuario(fkUsuario) {
+    console.log("Exibindo o total de curtidas do usuário", fkUsuario);
+
+    var instrucao = `
+    SELECT COUNT(c.id) AS totalCurtidas
+        FROM curtida c
+        INNER JOIN mural m ON c.fkMural = m.id
+    WHERE m.fkUsuario = ${fkUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+
+}
+
+function totalPublicacoes(fkUsuario) {
+    console.log("Exibindo o total de publicações do usuário", fkUsuario);
+
+    var instrucao = `
+    SELECT COUNT(m.id) AS totalPublicacoes
+        FROM mural m
+    WHERE m.fkUsuario = ${fkUsuario};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atividadesUsuario(fkUsuario) {
+    console.log("Consultando atividades do mural para o usuário", fkUsuario);
+    var instrucaoSql = `
+        SELECT
+            m.id AS idMural,
+            m.conteudo,
+            IFNULL(ct.totalCurtidas, 0) AS totalCurtidas
+        FROM mural m
+            LEFT JOIN (
+                SELECT fkMural, COUNT(*) AS totalCurtidas
+                FROM curtida
+                GROUP BY fkMural
+            ) ct ON m.id = ct.fkMural
+        WHERE m.fkUsuario = ${fkUsuario}
+        ORDER BY m.dtPublicacao ASC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listarPosts,
     listarCurtidasUsuario,
@@ -128,5 +174,8 @@ module.exports = {
     curtir,
     descurtir,
     comentar,
-    deletar
+    deletar,
+    totalCurtidasUsuario,
+    totalPublicacoes,
+    atividadesUsuario
 };

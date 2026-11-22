@@ -104,3 +104,24 @@ JOIN personagem p ON q.fkPersonagem = p.id
 GROUP BY p.nome;
 
 SELECT * FROM mural;
+
+SELECT * FROM comentario;
+
+SELECT * FROM curtida;
+
+    SELECT COUNT(m.id) AS totalPublicacoes
+        FROM mural m
+    WHERE m.fkUsuario = 2;
+
+        SELECT
+            m.id AS idMural,
+            m.conteudo,
+            IFNULL(ct.totalCurtidas, 0) AS totalCurtidas
+        FROM mural m
+            LEFT JOIN (
+                SELECT fkMural, COUNT(*) AS totalCurtidas
+                FROM curtida
+                GROUP BY fkMural
+            ) ct ON m.id = ct.fkMural
+        WHERE m.fkUsuario = 2
+        ORDER BY m.dtPublicacao ASC;

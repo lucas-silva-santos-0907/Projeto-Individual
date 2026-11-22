@@ -7,6 +7,18 @@ router.get("/listar/:idUsuario?", function (req, res) {
     muralController.listar(req, res);
 });
 
+router.get("/total-curtidas/:idUsuario", function (req, res) {
+    muralController.totalCurtidasUsuario(req, res)
+});
+
+router.get("/total-publicacoes/:idUsuario", function (req, res) {
+    muralController.totalPublicacoes(req, res)
+});
+
+router.get("/atividades/:idUsuario", function (req, res) {
+    muralController.atividades(req, res);
+});
+
 router.post("/publicar/:idUsuario", function (req, res) {
     muralController.publicar(req, res);
 });

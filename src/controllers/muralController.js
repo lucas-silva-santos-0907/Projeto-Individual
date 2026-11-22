@@ -144,11 +144,68 @@ function deletar(req, res) {
         });
 }
 
+function totalCurtidasUsuario(req, res) {
+    const idUsuario = req.params.idUsuario;
+    if (!idUsuario) {
+        res.status(400).send("Id do usuário está indefinido");
+        return;
+    }
+
+    muralModel.totalCurtidasUsuario(idUsuario)
+        .then(resultado => {
+            res.status(200).json({ total: resultado[0]?.totalCurtidas || 0 });
+        })
+        .catch(erro => {
+            console.log("Erro ao buscar total de curtidas:", erro.sqlMessage || erro);
+            res.status(500).json(erro.sqlMessage || erro);
+        });
+}
+
+function totalPublicacoes(req, res) {
+    const idUsuario = req.params.idUsuario;
+    if (!idUsuario) {
+        res.status(400).send("Id do usuário está indefinido");
+        return;
+    }
+    
+    muralModel.totalPublicacoes(idUsuario)
+        .then(resultado => {
+            res.status(200).json({ total: resultado[0]?.totalPublicacoes || 0 });
+        })
+        .catch(erro => {
+            console.log("Erro ao buscar total de publicacoes:", erro.sqlMessage || erro);
+            res.status(500).json(erro.sqlMessage || erro);
+        });
+
+
+
+}
+
+function atividades(req, res) {
+    const idUsuario = req.params.idUsuario;
+    if (!idUsuario) {
+        res.status(400).send("Id do usuário está indefinido");
+        return;
+    }
+
+    muralModel.atividadesUsuario(idUsuario)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.log("Erro ao buscar atividades do mural:", erro.sqlMessage || erro);
+            res.status(500).json(erro.sqlMessage || erro);
+        });
+}
+
 module.exports = {
     listar,
     publicar,
     curtir,
     descurtir,
     comentar,
-    deletar
+    deletar,
+    totalCurtidasUsuario,
+    totalPublicacoes,
+    atividades
 };
