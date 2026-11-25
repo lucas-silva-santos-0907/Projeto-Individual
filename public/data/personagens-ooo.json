@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "Finn Mertens",
+    "imagem": "assets/imgss/personagens/finn.png",
+    "descricao": "Herói humano que não desiste das causas certas. Corajoso, leal e sempre em busca de aventuras, Finn também cresce aprendendo sobre empatia e como tomar decisões maduras."
+  },
+  {
+    "nome": "Jake",
+    "imagem": "assets/imgss/personagens/jake.png",
+    "descricao": "Cão mágico e irmão adotivo de Finn. Jake é tranquilo, flexível e muito protetor, mas também adora pregar peças e contar histórias sobre antigas jornadas."
+  },
+  {
+    "nome": "BMO",
+    "imagem": "assets/imgss/personagens/BMO.jpg",
+    "descricao": "Um videogame ambulante cheio de personalidade. BMO mistura funções de amigo, console e câmera, ensinando que tecnologia pode ser divertida e ter sentimentos."
+  },
+  {
+    "nome": "Princesa Jujuba",
+    "imagem": "assets/imgss/personagens/princesajujuba.jpg",
+    "descricao": "Rainha inteligente e benevolente do Reino Doce. Com ciência, governança cuidadosa e um coração generoso, Jujuba equilibra lógica e emoção."
+  },
+  {
+    "nome": "Marceline",
+    "imagem": "assets/imgss/personagens/marceline.jpg",
+    "descricao": "Rainha vampira do reino das colinas. Marceline usa música para expressar o que sente, é independente, brincalhona e guarda memórias profundas do passado de Ooo."
+  },
+  {
+    "nome": "Rei Gelado",
+    "imagem": "assets/imgss/personagens/reigelado.jpg",
+    "descricao": "Um mago poderoso e atrapalhado. Costuma criar situações caóticas por causa de seus feitiços, mas também revela camadas tristes e humanas ao longo das histórias."
+  }
+]

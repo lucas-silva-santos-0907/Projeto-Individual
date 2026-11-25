@@ -70,10 +70,10 @@ body {
 }
 
 .mural {
-    background-color: #0d0d12;
+    background-color: #87D09F;
     padding: 2rem;
     border-radius: 16px;
-    border: 2px solid #1f1f26;
+    border: 2px solid #75AF88;
     width: 60%;
     height: 40%;
 }
@@ -84,6 +84,7 @@ body {
     align-items: center;
     color: white;
     margin-bottom: 0.5rem;
+    font-family: 'Pixelify Sans', sans-serif;
 }
 
 .mural-header h1 {
@@ -92,8 +93,9 @@ body {
 }
 
 .mural-header p {
-  margin: 4px 0 0;
-  color: #88f6b0;
+    margin: 4px 0 0;
+    color: #f1fff0;
+    font-size: 1.5rem;
 }
 
 .mural-avatar img {
@@ -104,16 +106,19 @@ body {
 }
 
 .mural-form {
-  background: linear-gradient(180deg, #9efab6, #5fd38f);
+  background-color: #64b17e;
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  font-family: 'Pixelify Sans', sans-serif;
+
 }
 
 .mural-form-title {
   font-size: 1.2rem;
   color: #e8ffe5;
   margin-bottom: 0.8rem;
+  
 }
 
 .mural-form textarea {
@@ -123,8 +128,9 @@ body {
     border-radius: 12px;
     padding: 0rem;
     font-size: 1rem;
-    font-family: 'Barlow', sans-serif;
     resize: vertical;
+    font-family: 'Pixelify Sans', sans-serif;
+
 }
 
 .mural-form textarea:focus {
@@ -143,32 +149,39 @@ body {
   border: none;
   border-radius: 16px;
   padding: 0.9rem 2.2rem;
-  background-color: #00c4ff;
+  background-color: #87D09F;
   color: #fff;
-  font-weight: 700;
+  font-weight: 200;
   letter-spacing: 0.08rem;
   cursor: pointer;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 18px;
+  border: 2px solid #75AF88;
+
+
 }
 
 .mural-feed {
-  background-color: #121215;
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 2px solid #1f1f26;
+    background-color: #87D09F;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 2px solid #75AF88;
 }
 
 .mural-feed-header {
   color: #f1fff0;
   margin-bottom: 1rem;
+  font-family: 'Pixelify Sans', sans-serif;
 }
 
 .mural-card {
-  background: #1f1f26;
+  background-color: #64b17e;
   border-radius: 16px;
   padding: 1rem 1.2rem;
   margin-bottom: 1rem;
-  border: 1px solid #2a2a33;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid #75AF88;
+  font-family: 'Pixelify Sans', sans-serif;
+
 }
 
 .mural-card + .mural-card {
@@ -223,15 +236,17 @@ body {
 }
 
 .mural-action-button {
-  border: none;
+  border: 1px solid #75AF88;
   padding: 0.4rem 1.2rem;
-  border-radius: 999px;
+  border-radius: 10px;
   font-weight: 700;
   letter-spacing: 0.05rem;
   background-color: #00c4ff;
   color: #fff;
   cursor: pointer;
   transition: transform 0.2s ease;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 16px;
 }
 
 .mural-action-button:hover {
@@ -247,7 +262,7 @@ body {
 }
 
 .mural-like-count {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: #a4ffa3;
   font-weight: 600;
 }
@@ -263,10 +278,10 @@ body {
 }
 
 .mural-comment {
-  background-color: #101010;
+  background-color: #87D09F;
   padding: 0.6rem 0.8rem;
   border-radius: 10px;
-  border: 1px solid #2a2a33;
+  border: 1px solid #75AF88;
 }
 
 .mural-comment strong {
@@ -297,8 +312,8 @@ body {
   width: 97%;
   min-height: 60px;
   border-radius: 10px;
-  border: 1px solid #2e2e37;
-  background-color: #0f0f15;
+  border: 1px solid #75AF88;
+  background-color: #87D09F;
   color: #fff;
   padding: 0.8rem;
 }
@@ -311,7 +326,7 @@ body {
 .mural-comment-btn {
   align-self: flex-end;
   border: none;
-  border-radius: 999px;
+  border-radius: 10px;
   padding: 0.4rem 1.5rem;
   background-color: #88f6b0;
   color: #0d0d12;
@@ -334,7 +349,7 @@ body {
 
 .mural-comment-empty {
   color: #9efab6;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .publicacao-btn-editar {
@@ -397,6 +412,8 @@ body {
     overflow: auto;
     border: 3px solid #000000;
     border-radius: 10px;
+  overflow-y: auto; /* Mantém a rolagem ativa */
+  scrollbar-width: none; /* Firefox */
 }
 
 .area-parametros-alerta {
@@ -651,6 +668,8 @@ canvas {
     height: 80vh;
     overflow: auto;
     justify-content: center;
+  scrollbar-width: thin;
+  scrollbar-color: #64b17e #BDF7D1;
 }
 
 .header-left h1 {
@@ -739,6 +758,18 @@ canvas {
     align-items: center;
 }
 
+.kpi h3 {
+  color: #BDF7D1;
+  font-size: 24px;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.kpi span {
+  color: #BDF7D1;
+  font-size: 36px;
+}
+
 .graficos {
     display: flex;
     background-color: #BDF7D1;
@@ -760,6 +791,9 @@ canvas {
 
 .grafico h3 {
   margin: 1px 1px 1px 10px;
+  color: #BDF7D1;
+  font-size: 24px;
+  letter-spacing: 1px;
 }
 
 .grafico canvas {

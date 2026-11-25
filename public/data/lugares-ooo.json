@@ -1,0 +1,42 @@
+[
+  {
+    "nome": "Reino Doce",
+    "imagem": "assets/imgss/Lugares/reinodoce.jpg",
+    "descricao": "Terra de confeitos, onde a Princesa Jujuba governa e tudo parece feito de açúcar. É colorido, cheio de estruturas brilhantes e sempre tem novas delícias para descobrir."
+  },
+  {
+    "nome": "Casa na Árvore",
+    "imagem": "assets/imgss/Lugares/casadaarvore.jpg",
+    "descricao": "Base segura de Finn e Jake, construída no alto de árvores gigantes com quartos variados e espaço para aventuras improvisadas. É simples por fora e surpreendente por dentro."
+  },
+  {
+    "nome": "Reino Gelado",
+    "imagem": "assets/imgss/Lugares/reinogelado.png",
+    "descricao": "Uma planície congelada com castelos azuis, neve eterna e o Rei Gelado governando (ainda que meio atrapalhado). Um lugar bonito, mas cheio de magia imprevisível."
+  },
+  {
+    "nome": "Reino de Fogo",
+    "imagem": "assets/imgss/Lugares/reinodefogo.png",
+    "descricao": "Um território incandescente cercado por lava e rochas em brasa. Governado por um povo resistente e acostumado ao calor extremo, é pura energia e cor."
+  },
+  {
+    "nome": "Noitosfera",
+    "imagem": "assets/imgss/Lugares/noitosfera.png",
+    "descricao": "Um lugar de sonhos e memórias que flutuam no céu. As regras são fluidas, e quem atravessa a Noitosfera precisa respeitar o tempo e os sentimentos dos outros."
+  },
+  {
+    "nome": "Reino do Caroço",
+    "imagem": "assets/imgss/Lugares/reinogrumoso.png",
+    "descricao": "Coberto por florestas escuras, este reino tem vilas misteriosas e criaturas selvagens. É perfeito para quem curte trilhas e perigos constantes."
+  },
+  {
+    "nome": "Cidade dos Magos",
+    "imagem": "assets/imgss/Lugares/cidadedosmagos.png",
+    "descricao": "Centro da magia prática e das aulas especiais. Magos aprontam feitiços e experimentos em torres pontiagudas e bibliotecas cheias de grimórios."
+  },
+  {
+    "nome": "Sala do Prismo",
+    "imagem": "assets/imgss/Lugares/saladoprismo.png",
+    "descricao": "A Sala do Prismo é um lugar misterioso localizado fora da realidade, onde Prismo pode observar o multiverso e realizar desejos."
+  }
+]

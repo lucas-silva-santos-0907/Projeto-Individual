@@ -141,7 +141,15 @@ html {
 .social {
   background-color: #e5e5e5;
   display: flex;
-  height: var(--tamanho-campo);
+  height: 680px;
+  background-image: 
+          linear-gradient(rgba(81, 94, 100, 0.8), rgba(81, 94, 100, 0.8)),
+  url(../assets/imgss/fundoOoo;.jpg);
+      background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  color: #9DBDE4;
 }
 
 .social .container {
@@ -149,8 +157,8 @@ html {
 }
 
 .box img {
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 325px;
   border-radius: 10px;
 }
 
@@ -159,16 +167,19 @@ html {
   justify-content: space-between;
   width: 100%;
   padding: 30px 0;
+  align-items: center;
 }
 
 .social p {
   text-align: center;
+  font-size: 18px;
 }
 
 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 500px;
 }
 
 /* FOOTER */
@@ -189,6 +200,153 @@ html {
 
 .footer .container .version {
   font-size: 12px;
+}
+
+.explore-ooo {
+  padding: 60px 0 90px;
+  /* background: radial-gradient(circle at top left, rgba(255, 219, 93, 0.25), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(0, 155, 209, 0.25), transparent 50%),
+    #07070d; */
+  color: #f7f2df;
+        background-image:
+        linear-gradient(rgba(4, 13, 24, 0.92), rgba(4, 13, 24, 0.92)),
+        url('../assets/imgss/Lugares/mapadeooo.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.explore-personagens {
+  padding: 60px 0 90px;
+  /* background: radial-gradient(circle at top right, rgba(255, 130, 84, 0.2), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(58, 255, 173, 0.15), transparent 50%),
+    #05050c; */
+  color: #f7f2df;
+      background-image:
+        linear-gradient(rgba(4, 13, 24, 0.92), rgba(4, 13, 24, 0.92)),
+        url('../assets/imgss/Lugares/personagens1.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.explore-conteudo {
+  width: 90%;
+  gap: 40px;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.lado-esquerdo,
+.lado-direito {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lado-esquerdo {
+  max-width: 65%;
+}
+
+.imagem-wrapper {
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+}
+
+.imagem-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* max-height: 380px; */
+}
+
+.info-lugar h3 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 1px;
+}
+
+.info-lugar p {
+  margin: 0;
+  line-height: 1.6;
+  color: #c7d8f4;
+  font-size: 20px;
+}
+
+.ingrediente {
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--cor-jake);
+}
+
+.lado-direito {
+  max-width: 35%;
+}
+
+.lado-direito h3 {
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.lista-lugares,
+.lista-personagens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.lista-lugares li,
+.lista-personagens li {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: border 0.3s ease, transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.02);
+  color: #f7f2df;
+  width: 420px;
+  font-size: 18px;
+}
+
+.lista-lugares li:hover,
+.lista-personagens li:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lista-lugares li.ativo,
+.lista-personagens li.ativo {
+  border-color: var(--cor-jake);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .explore-conteudo {
+    flex-direction: column;
+  }
+
+  .lado-esquerdo,
+  .lado-direito {
+    max-width: 100%;
+  }
+
+  .imagem-wrapper img {
+    max-height: 260px;
+  }
 }
 
 /* LOGIN */

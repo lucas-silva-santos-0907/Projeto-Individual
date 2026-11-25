@@ -24,9 +24,9 @@
           <li class="agora">
             <a href="#">Inicial</a>
           </li>
-          <li>
+          <!-- <li>
             <a href="simulador.html">Simulador</a>
-          </li>
+          </li> -->
           <li>|</li>
           <li>
             <a href="login.html">Login</a>
@@ -55,29 +55,123 @@
       <div class="container">
         <div class="boxes">
           <div class="box">
-            <img src="assets/imgss/Finn.jpg">
-            <h4>Finn</h4>
-            <p>O humano aventureiro e corajoso, sempre disposto a ajudar seus amigos e enfrentar qualquer desafio.</p>
+            <img src="assets/imgss/pendlenton.jpg">
+            <h2>Pendleton Ward</h2>
+            <p>Criador de Hora de aventura</p>
           </div>
           <div class="box">
-            <img src="assets/imgss/Jake.jpg">
-            <h4>Jake</h4>
-            <p>O melhor amigo de Finn, leal e descontraído. Com seus poderes elásticos, transforma qualquer aventura em diversão.</p>
+            <img src="assets/imgss/horadeaventura.jpg">
+            <h4>Hora de Aventura</h4>
+            <p>Hora de Aventura é uma série de desenho animado americana criada por Pendleton Ward para o Cartoon Network. A série segue as aventuras de Finn, um garoto humano aventureiro, e irmão adotivo Jake, um cão com poderes que lhe permitem alterar a forma e tamanho conforme a sua vontade. Finn e Jake habitam a pós-apocalíptica Terra de Ooo, onde interagem com os outros personagens principais da série: Princesa Jujuba, o Rei Gelado e Marceline, a Rainha dos Vampiros</p>
           </div>
-          <div class="box">
+          <!-- <div class="box">
             <img src="assets/imgss/BMO.jpg">
             <h4>BMO</h4>
             <p>Um pequeno videogame com um grande coração. Divertido, inocente e sempre pronto para acompanhar Finn e Jake.</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
-  
+
+    <section class="explore-ooo" aria-labelledby="explore-titulo">
+      <div class="container explore-conteudo">
+        <div class="lado-esquerdo">
+          <div class="imagem-wrapper">
+            <img id="lugar-imagem" src="" alt="Imagem do lugar selecionado" loading="lazy">
+          </div>
+          <div class="info-lugar">
+            <p class="ingrediente">Explore o mundo de Ooo</p>
+            <h3 id="lugar-nome"></h3>
+            <p id="lugar-descricao"></p>
+          </div>
+        </div>
+        <div class="lado-direito">
+          <h3 id="explore-titulo">Lugares para visitar</h3>
+          <ul id="lista-lugares" class="lista-lugares"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="explore-personagens" aria-labelledby="personagens-titulo">
+      <div class="container explore-conteudo">
+        <div class="lado-esquerdo">
+          <div class="imagem-wrapper">
+            <img id="personagem-imagem" src="" alt="Foto do personagem" loading="lazy">
+          </div>
+          <div class="info-lugar">
+            <p class="ingrediente">Personagens de Ooo</p>
+            <h3 id="personagem-nome"></h3>
+            <p id="personagem-descricao"></p>
+          </div>
+        </div>
+        <div class="lado-direito">
+          <h3 id="personagens-titulo">Conheça os personagens</h3>
+          <ul id="lista-personagens" class="lista-personagens"></ul>
+        </div>
+      </div>
+    </section>
+
     <div class="footer">
       <div class="container">
         <h4>Feito com amor por Lucas Silva dos Santos &hearts; SPTech &copy; 2023-2026</h4>
       </div>
     </div>
+    <script>
+      function carregarSecaoInterativa(caminhoJson, ids) {
+        const lista = document.getElementById(ids.lista);
+        const nome = document.getElementById(ids.nome);
+        const descricao = document.getElementById(ids.descricao);
+        const imagem = document.getElementById(ids.imagem);
+        let itensData = [];
+
+        function mostrar(index) {
+          const item = itensData[index];
+          if (!item) return;
+          imagem.src = item.imagem;
+          imagem.alt = `Foto de ${item.nome}`;
+          nome.textContent = item.nome;
+          descricao.textContent = item.descricao;
+          const elementos = lista.querySelectorAll('li');
+          elementos.forEach((elemento, idx) => {
+            elemento.classList.toggle('ativo', idx === index);
+          });
+        }
+
+        fetch(caminhoJson)
+          .then(response => response.json())
+          .then(data => {
+            itensData = data;
+            data.forEach((elemento, index) => {
+              const item = document.createElement('li');
+              item.textContent = elemento.nome;
+              item.addEventListener('click', () => mostrar(index));
+              lista.appendChild(item);
+            });
+            if (data.length) {
+              mostrar(0);
+            }
+          })
+          .catch(() => {
+            const erro = document.createElement('li');
+            erro.textContent = 'Não foi possível carregar os dados.';
+            lista.appendChild(erro);
+          });
+      }
+
+      carregarSecaoInterativa('./data/lugares-ooo.json', {
+        lista: 'lista-lugares',
+        nome: 'lugar-nome',
+        descricao: 'lugar-descricao',
+        imagem: 'lugar-imagem',
+      });
+
+      carregarSecaoInterativa('./data/personagens-ooo.json', {
+        lista: 'lista-personagens',
+        nome: 'personagem-nome',
+        descricao: 'personagem-descricao',
+        imagem: 'personagem-imagem',
+      });
+    </script>
   </body>
 
 </html>
