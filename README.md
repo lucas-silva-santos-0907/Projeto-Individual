@@ -1,105 +1,81 @@
-<img src="https://user-images.githubusercontent.com/46379117/192358781-9ca879e4-e55e-4d0d-b876-f9a4a2ed9ae8.png" width="600px">
 
-_Web Data Visualization = Visualização de Dados na Web_
+# 🕰️ Project Time — Adventure Time
 
-_Implementação de Referência para o seu Projeto de Primeiro Semestre_
+> Uma experiência interativa inspirada no universo de Hora de Aventura, explorando seus personagens, lugares, histórias e curiosidades.
 
-<hr>
+## 📖 Sobre o projeto
 
-# Como usar
+O **Project Time** é um site inspirado no universo de *Hora de Aventura (Adventure Time)*, desenvolvido com o objetivo de reunir conteúdos da série em uma experiência interativa, permitindo que os usuários explorem o mundo de Ooo, conheçam seus personagens e interajam com outras funcionalidades da plataforma.
 
-1. Clone este repositório em sua máquina.
+O projeto busca unir desenvolvimento web, organização de dados e interatividade, transformando a paixão pela série em uma aplicação web.
 
+## 🎯 Objetivo
 
-1. Crie, no Banco de Dados, as tabelas necessárias para o funcionamento deste projeto.
-- Siga as instruções no arquivo **/src/database/script-tabelas.sql**
+Desenvolver uma plataforma temática que permita aos fãs de Hora de Aventura explorar o universo da série de maneira interativa, proporcionando uma experiência que vai além de um site informativo tradicional.
 
+## ✨ Funcionalidades
 
-3. Acesse o arquivo **app.js** e parametrize o ambiente.
-- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **var ambiente_processo = 'producao';**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **var ambiente_processo = 'desenvolvimento';**
+- **Exploração de lugares:** conheça os principais lugares do universo de Hora de Aventura, suas características e histórias.
+- **Exploração de personagens:** descubra personagens marcantes da série e suas personalidades.
+- **Quiz de personalidade:** responda perguntas e descubra qual personagem de Hora de Aventura mais combina com você.
+- **Sistema de cadastro e login:** criação de contas e acesso à plataforma.
+- **Mural da comunidade:** espaço para compartilhar publicações, interagir, comentar e curtir conteúdos de outros usuários.
+- **Dashboard:** visualização de dados e informações sobre as interações realizadas na plataforma.
 
-4. Adicione as credenciais de Banco de Dados no arquivo **.env** ou em **.env.dev**, seguindo as instruções neste.
+## 🛠️ Tecnologias utilizadas
 
-5. Acesse este repositório no seu terminal (GitBash ou VSCode) e execute os comandos abaixo:
+### Front-end
+- HTML5
+- CSS3
+- JavaScript
 
-```
-npm i
-``` 
-_O comando acima irá instalar as bibliotecas necessárias para o funcionamento do projeto. As bibliotecas a serem instaladas estão listadas no arquivo **package.json** então é muito importante que este não seja alterado. Será criada uma nova pasta/diretório chamado **node_modules** quando o comando for finalizado, que é onde as bibliotecas estão localizadas. Não altere a pasta/diretório._
+### Back-end
+- Node.js
+- Express
 
-```
-npm start
-``` 
+### Banco de dados
+- MySQL
 
-_O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a sua parametrização feita nos passos anteriores._
+### Visualização de dados
+- Chart.js
 
-6. Para "ver" seu projeto funcionando, acesse em seu navegador o caminho **informado no terminal**.
+## 🗄️ Banco de dados
 
-7. Caso queira parar a execução, tecle **CTRL+C** no terminal em que o projeto está rodando.
+O projeto utiliza o MySQL para armazenar e organizar os dados da aplicação, incluindo informações dos usuários, resultados do quiz, publicações do mural, comentários e curtidas.
 
-## Adicionar novo recurso ao projeto
+Principais entidades do banco de dados:
 
-**"Recurso? O que é?"** Enquanto no Banco de Dados chamamos as tabelas de "entidades", quando tratamos de desenvolvimento WEB usamos a palavra "recurso" para se referir a algo que podemos criar, ler, atualizar ou deletar [1]. Estas ações são conhecidas como CRUD: Create, Read, Update e Delete. Para acessar cada ação, usamos os métodos HTTP: POST, GET, PUT e DELETE [2]. (Há outros verbos, porém com estes já conseguimos efetuar CRUDs). 
+- `usuario` — dados dos usuários cadastrados.
+- `personagem` — personagens disponíveis no quiz.
+- `quiz` — resultados das realizações do quiz.
+- `mural` — publicações realizadas pelos usuários.
+- `comentario` — comentários feitos nas publicações.
+- `curtida` — interações de curtidas nas publicações.
 
-**Tabela para ajudar a fazer a associação**
+## 🧭 Organização do projeto
 
-<table>
-  <tr>
-    <th>C.R.U.D</th>
-    <th>Ação</th>
-    <th>Tradução</th>
-    <th>Verbo HTTP *</th>
-    <th>Comando BD</th>
-  </tr>
-  <tr>
-    <td>C</td>
-    <td>Create</td>
-    <td>Criar</td>
-    <td>POST</td>
-    <td>INSERT</td>
-  </tr>
-  <tr>
-    <td>R</td>
-    <td>Read</td>
-    <td>Ler</td>
-    <td>GET</td>
-    <td>SELECT</td>
-  </tr>
-  <tr>
-    <td>U</td>
-    <td>Update</td>
-    <td>Atualizar</td>
-    <td>PUT</td>
-    <td>UPDATE</td>
-  </tr>
-  <tr>
-    <td>D</td>
-    <td>Delete</td>
-    <td>Deletar</td>
-    <td>DELETE</td>
-    <td>DELETE</td>
-  </tr>
-</table>
+O projeto utiliza uma estrutura que separa as responsabilidades da aplicação, organizando os arquivos de interface, lógica, comunicação com o servidor e acesso ao banco de dados.
 
-_* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
+- **HTML:** estrutura das páginas.
+- **CSS:** estilização e identidade visual.
+- **JavaScript:** funcionalidades e interações do usuário.
+- **Node.js / Express:** servidor e comunicação entre a aplicação e o banco de dados.
+- **MySQL:** armazenamento das informações.
 
-**"E no meu projeto, o que seria um recurso?"** Em web-data-viz manipulamos os recursos **usuário**, **aviso** e **medida**. Podemos conferir isso vendo para quais entidades foram criados os caminhos de inserção e captura de dados, que envolve os diretórios **routes**, **controllers** e **models**.
+## 🎨 Identidade visual
 
-Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exemplo, efetuar o cadastro de um usuário:
+O site possui uma identidade visual inspirada no universo de Hora de Aventura, utilizando elementos, cenários, personagens e cores que remetem ao desenho.
 
+A proposta é proporcionar uma navegação imersiva, fazendo com que o usuário sinta que está explorando o universo de Ooo.
 
-![image](https://github.com/user-attachments/assets/d576f178-0da6-437e-b5c9-658e3ebaf6ca)
+## 🚀 Desenvolvido como projeto acadêmico
 
+O Project Time foi desenvolvido como projeto individual durante o curso de **Análise e Desenvolvimento de Sistemas**, com o propósito de aplicar na prática os conhecimentos adquiridos em desenvolvimento web, programação, banco de dados e construção de aplicações interativas.
 
+## 👨‍💻 Autor
 
-**Entendi o que é um recurso e gostaria de adicionar um novo ao meu projeto! Como faz?**  
-- Primeiro, crie a tabela no Banco de Dados referente a este recurso. Exemplos de recursos comuns de serem adicionados ao projeto no primeiro semestre: Silo, Aquário, Sala, Andar, Endereço, Mercado, Prateleira, Unidade, Carro, Caminhão...  
-- Assim que criada a tabela, faça todo o caminho de **front-end → routes → controllers → models** replicando o que já existe!  
-- Exemplo, se você quiser a funcionalidade de adicionar um novo Aquário, deve criar arquivos referentes ao aquario nos diretórios e replicar também as funções.  
-- Dica: A implementação de AVISO já contém o CRUD completo! :wink:
- 
-### Fontes bibliográficas
+Desenvolvido por **Lucas Silva**.
 
-[1] https://datatracker.ietf.org/doc/html/rfc2396  
-[2] https://datatracker.ietf.org/doc/html/rfc7231
+---
+
+*“Adventure is out there!”* 🍃
