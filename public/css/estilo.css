@@ -21,7 +21,37 @@ body {
   --cor-jake: #FEB800;   
   --cor-finn: #009BD1;
   --cor-marceline: #A3BACA;
+    /* overflow-y: auto; 
+  scrollbar-width: none;  */
+
 }
+
+
+/* 2. Estilização avançada para navegadores WebKit (Chrome, Edge, Opera, Safari) */
+::-webkit-scrollbar {
+  width: 10px; /* Largura da barra vertical */
+  height: 10px; /* Altura da barra horizontal */
+}
+
+/* Fundo da barra de rolagem (trilho) */
+::-webkit-scrollbar-track {
+  background: var(--cor-jake); 
+}
+
+/* Parte móvel da barra de rolagem (thumb) */
+::-webkit-scrollbar-thumb {
+  background: var(--cor-finn); 
+  border-radius: 5px; /* Deixa os cantos arredondados */
+}
+
+/* Cor ao passar o mouse sobre a barra */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-finn); 
+}
+
+
+
+
 
 .container {
   display: flex;
@@ -141,7 +171,7 @@ html {
 .social {
   background-color: #e5e5e5;
   display: flex;
-  height: 680px;
+  height: 679px;
   background-image: 
           linear-gradient(rgba(81, 94, 100, 0.8), rgba(81, 94, 100, 0.8)),
   url(../assets/imgss/fundoOoo;.jpg);
@@ -230,6 +260,7 @@ html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    height: 650px;
 }
 
 .explore-conteudo {
@@ -252,10 +283,12 @@ html {
 }
 
 .imagem-wrapper {
-  border: 3px solid rgba(255, 255, 255, 0.35);
-  border-radius: 16px;
-  overflow: hidden;
-  background: #111;
+    border: 3px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    overflow: auto;
+    background: #111;
+    width: 65%;
+    height: 65%;
 }
 
 .imagem-wrapper img {
@@ -312,10 +345,10 @@ html {
 .lista-personagens li {
   padding: 14px 16px;
   border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  border: 3px solid var(--cor-finn);
   cursor: pointer;
   transition: border 0.3s ease, transform 0.2s ease;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--cor-jake);
   color: #f7f2df;
   width: 420px;
   font-size: 18px;
@@ -503,12 +536,12 @@ html {
 
 .card_erro {
   display: none;
-  background-color: #fff;
+  background-color: var(--cor-jake);
   color: black;
   width: 230px;
   position: fixed;
   border-radius: 4px;
-  border: #ED145B 3px solid;
+  border: var(--cor-finn) 3px solid;
   padding: 10px;
   margin-right: 10%;
 }

@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AquaTech | Cadastro</title>
+  <title>Project Time | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="icon" href="./assets/icon/prismoicon.jpg" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
@@ -19,7 +19,7 @@
   <!--header inicio-->
   <div class="header">
     <div class="container">
-        <img class="logo" src="assets/imgss//Logo.png" alt="">
+        <img class="logo" src="assets/imgss/Logo Project Time com Espada Fantástica.png" alt="">
         <img class="jakeHeader" src="assets/imgss/Jake Header.png" alt="">
       <ul class="navbar">
         <li>
@@ -110,6 +110,19 @@
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else if (
+      !(nomeVar.length > 1) ||
+      !(emailVar.includes('@')) ||
+      !(senhaVar > 6) ||
+      !(confirmacaoSenhaVar == senhaVar)
+       
+    ){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Os campos não estão seguindo as regras)";
 
       finalizarAguardar();
       return false;

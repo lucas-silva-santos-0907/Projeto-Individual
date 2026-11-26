@@ -413,7 +413,7 @@ body {
     border: 3px solid #000000;
     border-radius: 10px;
   overflow-y: auto; /* Mantém a rolagem ativa */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
 }
 
 .area-parametros-alerta {
